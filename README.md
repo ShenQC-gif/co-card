@@ -26,6 +26,7 @@ The game will be over if you tap wrong card. Score will recorded according to th
 After game is over, tap again if you play again, tap Home if you play in other mode, tap Share if you share the score on SNS.
 
 (※)
+![image](https://user-images.githubusercontent.com/66754677/98485801-4e3eb480-225c-11eb-83d3-9240bc058cb0.jpg)
 
 
 # URL
