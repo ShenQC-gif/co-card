@@ -31,7 +31,7 @@ After game is over, tap Again if you play again, tap Home if you play in other m
 
 # Others
 
-Install: https://apps.apple.com/us/app/co-card/id1526042685
+Install: https://apps.apple.com/us/app/co-card/id1526042685  
 Homepage: https://peraichi.com/landing_pages/view/shenqc
 
 # Author
