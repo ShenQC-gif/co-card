@@ -32,3 +32,7 @@ After game is over, tap Again if you play again, tap Home if you play in other m
 # URL
 
 https://apps.apple.com/us/app/co-card/id1526042685
+
+
+[@QC49508803](https://twitter.com/QC49508803)
+mail to: shen24qichen@mail.com
