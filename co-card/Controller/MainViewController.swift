@@ -271,11 +271,12 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
                 // ハイスコア更新かチェック
                 highScore.updateScore(scoreNum, mode ?? "", &highscoreLabel.text!)
                 
-                //
+                //レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動
                 if levelNum == Int(oneColumnNum) * Int(oneColumnNum) - 1 {
                     outputText = "Congratulations!!"
                     performSegue(withIdentifier: "gameover", sender: nil)
 
+                //レベルがMaxに達していない時の挙動
                 } else {
                     // 数字を割当てるカードの枚数を増やす
                     cardCount += 1
