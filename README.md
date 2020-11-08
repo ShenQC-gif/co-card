@@ -36,7 +36,7 @@ Homepage: https://peraichi.com/landing_pages/view/shenqc
 
 # Conclusion
 隙間時間にサクッと遊べるように、フルスクラッチで作ったミニゲームです。  
-I created this app for someone who wants to kill the time.  
+This is an awesome app for someone who wants to kill the time.  
   
 記憶力を鍛えながら、自己ベストを目指してください。  
 Try to get higer score, developing your memory.
