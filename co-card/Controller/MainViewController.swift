@@ -11,7 +11,6 @@ import UIKit
 
 class MainViewController: UIViewController, AVAudioPlayerDelegate {
     
-//    var createCard = Box()
     var sounds = Sounds()
     var highScore = Highscore()
 
