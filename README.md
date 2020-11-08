@@ -5,4 +5,4 @@ CO-CARD is a simple game to tap numbers in order which increase by one.
  
 # DEMO
 
-![My Video](https://user-images.githubusercontent.com/66754677/98460561-d7b49f00-21e8-11eb-9d1f-15d8272aaf56.gif)
+![Videotogif](https://user-images.githubusercontent.com/66754677/98461391-0f264a00-21ef-11eb-95df-d9709b63ef49.gif)
