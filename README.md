@@ -29,10 +29,17 @@ After game is over, tap Again if you play again, tap Home if you play in other m
 ![image](https://user-images.githubusercontent.com/66754677/98485801-4e3eb480-225c-11eb-83d3-9240bc058cb0.jpg)
 
 
-# Others
+# Link
 
 Install: https://apps.apple.com/us/app/co-card/id1526042685  
 Homepage: https://peraichi.com/landing_pages/view/shenqc
+
+# Conclusion
+隙間時間にサクッと遊べるように、フルスクラッチで作ったミニゲームです。  
+I created this app for someone who wants to kill the time.  
+  
+記憶力を鍛えながら、自己ベストを目指してください。  
+Try to get higer score, developing your memory.
 
 # Author
 Twitter: [@QC49508803](https://twitter.com/QC49508803)  
