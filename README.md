@@ -23,7 +23,7 @@ Get 10pt if you tap the correct card, and get 100pt if you clear the level.
 The game will be over if you tap wrong card. Score will be recorded according to the mode.
 
 ⑤終了後、もう一度プレイしたければAgainを、別の難易度でプレイしたければHomeを、SNSでシェアしたければShareをタップします。  
-After game is over, tap again if you play again, tap Home if you play in other mode, tap Share if you share the score on SNS.
+After game is over, tap again if you play again, tap Home if you play in other mode, and tap Share if you share the score on SNS.
 
 (※)  
 ![image](https://user-images.githubusercontent.com/66754677/98485801-4e3eb480-225c-11eb-83d3-9240bc058cb0.jpg)
