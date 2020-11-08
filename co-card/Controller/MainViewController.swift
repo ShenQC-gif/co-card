@@ -11,7 +11,7 @@ import UIKit
 
 class MainViewController: UIViewController, AVAudioPlayerDelegate {
     
-    var createCard = Box()
+//    var createCard = Box()
     var sounds = Sounds()
     var highScore = Highscore()
 
@@ -100,7 +100,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             let card = UILabel()
 
             // Labelにカードプロパティを付与
-            createCard.create(label: card)
+            boxProperty(label: card)
 
             // 数字の書かれたカードの総数を1増やす
             cardCount += 1
@@ -162,7 +162,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             // UILabelのインスタンス作成
             let cover = UILabel()
 
-            createCard.create(label: cover)
+            boxProperty(label: cover)
 
             // カバーの枚数を増加
             coverCount += 1
@@ -198,6 +198,19 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             // シャッフル後のカード配列の各カードのタグをカバー配列のカバーに割当て
             coverArray[cardArray[n].tag - 1].tag = numArray[n]
         }
+    }
+    
+   
+        //カード・カバーのプロパティを設定
+        func boxProperty(label: UILabel) {
+           
+            label.textAlignment = NSTextAlignment.center // 横揃えの設定
+            label.textColor = UIColor.black // テキストカラーの設定
+            label.backgroundColor = UIColor.white
+            label.layer.borderWidth = 2
+            label.layer.cornerRadius = 10
+            label.font = UIFont(name: "HiraKakuProN-W6", size: 17) // フォントの設定
+        
     }
 
     // カバーをタップした時の挙動

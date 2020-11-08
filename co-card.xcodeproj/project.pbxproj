@@ -16,7 +16,6 @@
 		EAD082E625554D0D008621B8 /* co_cardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD082E525554D0D008621B8 /* co_cardTests.swift */; };
 		EAD082F125554D0D008621B8 /* co_cardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD082F025554D0D008621B8 /* co_cardUITests.swift */; };
 		EAD0830225554DEC008621B8 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0830125554DEC008621B8 /* Sounds.swift */; };
-		EAD0830425554E0F008621B8 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0830325554E0F008621B8 /* Box.swift */; };
 		EAD0830625554E30008621B8 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0830525554E30008621B8 /* Highscore.swift */; };
 		EAD0830825554E56008621B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0830725554E56008621B8 /* HomeViewController.swift */; };
 		EAD0830A25554E8A008621B8 /* GameoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0830925554E8A008621B8 /* GameoverViewController.swift */; };
@@ -58,7 +57,6 @@
 		EAD082F025554D0D008621B8 /* co_cardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = co_cardUITests.swift; sourceTree = "<group>"; };
 		EAD082F225554D0D008621B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAD0830125554DEC008621B8 /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
-		EAD0830325554E0F008621B8 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		EAD0830525554E30008621B8 /* Highscore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highscore.swift; sourceTree = "<group>"; };
 		EAD0830725554E56008621B8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EAD0830925554E8A008621B8 /* GameoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameoverViewController.swift; sourceTree = "<group>"; };
@@ -158,11 +156,11 @@
 			children = (
 				EAD082D425554D09008621B8 /* Main.storyboard */,
 				EAD082D925554D0C008621B8 /* LaunchScreen.storyboard */,
+				EAD0830125554DEC008621B8 /* Sounds.swift */,
 				EAD0830C255557D7008621B8 /* correct.mp3 */,
 				EAD0830D255557D7008621B8 /* levelup.mp3 */,
 				EAD0830B255557D7008621B8 /* wrong.mp3 */,
 				EAD082D725554D0C008621B8 /* Assets.xcassets */,
-				EAD0830125554DEC008621B8 /* Sounds.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -170,7 +168,6 @@
 		EAD0830025554D72008621B8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EAD0830325554E0F008621B8 /* Box.swift */,
 				EAD0830525554E30008621B8 /* Highscore.swift */,
 			);
 			path = Model;
@@ -317,7 +314,6 @@
 				EAD0830A25554E8A008621B8 /* GameoverViewController.swift in Sources */,
 				EAD0830225554DEC008621B8 /* Sounds.swift in Sources */,
 				EAD0830825554E56008621B8 /* HomeViewController.swift in Sources */,
-				EAD0830425554E0F008621B8 /* Box.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
