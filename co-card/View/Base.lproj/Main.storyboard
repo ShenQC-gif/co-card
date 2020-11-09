@@ -120,9 +120,9 @@
                     </view>
                     <connections>
                         <outlet property="highscoreLabel" destination="CZz-DN-E4B" id="09E-OC-ona"/>
-                        <outlet property="level" destination="O4d-Vu-ORK" id="MUG-UP-ylc"/>
+                        <outlet property="levelLabel" destination="O4d-Vu-ORK" id="I1h-as-vmC"/>
                         <outlet property="modeLabel" destination="jAL-3Z-7TN" id="v1W-Hi-LYK"/>
-                        <outlet property="score" destination="mpP-xB-2nZ" id="bis-Sj-z1g"/>
+                        <outlet property="scoreLabel" destination="mpP-xB-2nZ" id="XrE-Ov-PcH"/>
                         <segue destination="MkH-9b-T7b" kind="presentation" identifier="gameover" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="lOx-RI-vx1"/>
                     </connections>
                 </viewController>
@@ -206,10 +206,10 @@
                     <connections>
                         <outlet property="again" destination="1RX-Ii-hSC" id="j1A-cz-MQU"/>
                         <outlet property="home" destination="00F-5g-Uzz" id="wK6-A8-GBz"/>
-                        <outlet property="level" destination="y6a-ae-mDz" id="2qj-ew-tM1"/>
+                        <outlet property="levelLabel" destination="y6a-ae-mDz" id="zTm-fZ-CPn"/>
                         <outlet property="modeLabel" destination="0y8-Rc-y1L" id="8rs-3l-eyG"/>
                         <outlet property="outputLabel" destination="jKk-1i-mQt" id="1Aj-9r-sfr"/>
-                        <outlet property="score" destination="aD2-BU-mJE" id="ig6-4U-t32"/>
+                        <outlet property="scoreLabel" destination="aD2-BU-mJE" id="sy9-rV-1Kz"/>
                         <outlet property="share" destination="SXp-Hx-oeI" id="3Yf-Tz-dOJ"/>
                     </connections>
                 </viewController>
@@ -219,6 +219,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GZm-6x-DKS"/>
+        <segue reference="nr2-C7-UKM"/>
     </inferredMetricsTieBreakers>
 </document>

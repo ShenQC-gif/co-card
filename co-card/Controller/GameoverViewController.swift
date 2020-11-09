@@ -11,8 +11,8 @@ import UIKit
 class GameoverViewController: UIViewController {
     var screenShotImage = UIImage()
 
-    var levelNum = 0
-    var scoreNum = 0
+    var level = 0
+    var score = 0
     var newLevelNum = 1
     var newScoreNum = 0
     var oneColumnNum: CGFloat = 0
@@ -22,8 +22,8 @@ class GameoverViewController: UIViewController {
     let height = UIScreen.main.bounds.size.height
 
     @IBOutlet var outputLabel: UILabel!
-    @IBOutlet var level: UILabel!
-    @IBOutlet var score: UILabel!
+    @IBOutlet var levelLabel: UILabel!
+    @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var modeLabel: UILabel!
     @IBOutlet var again: UIButton!
     @IBOutlet var home: UIButton!
@@ -42,12 +42,12 @@ class GameoverViewController: UIViewController {
                                  width: width * 7 / 16,
                                  height: height / 15)
 
-        level.frame = CGRect(x: width / 2,
+        levelLabel.frame = CGRect(x: width / 2,
                              y: height * 6.5 / 24,
                              width: width * 7 / 16,
                              height: height / 15)
 
-        score.frame = CGRect(x: 0,
+        scoreLabel.frame = CGRect(x: 0,
                              y: height * 9.5 / 24,
                              width: width,
                              height: height / 15)
@@ -72,8 +72,8 @@ class GameoverViewController: UIViewController {
         share.layer.borderWidth = 2
 
         outputLabel.text = outputText
-        level.text = " Level \(levelNum)"
-        score.text = " Score \(scoreNum)"
+        levelLabel.text = " Level \(level)"
+        scoreLabel.text = " Score \(score)"
         modeLabel.text = mode
     }
 
@@ -103,8 +103,8 @@ class GameoverViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "toMain" {
             let playscreen = segue.destination as! MainViewController
-            playscreen.levelNum = 1
-            playscreen.scoreNum = newScoreNum
+            playscreen.level = 1
+            playscreen.score = newScoreNum
             playscreen.oneColumnNum = oneColumnNum
             playscreen.mode = mode
         }

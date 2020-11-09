@@ -22,8 +22,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
 
     var chooseOrder = 0
 
-    var levelNum = 1
-    var scoreNum = 0
+    var level = 1
+    var score = 0
     var mode: String?
 
     var outputText: String?
@@ -35,8 +35,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     var coverArray: [UILabel] = []
     var numArray: [Int] = []
 
-    @IBOutlet var level: UILabel!
-    @IBOutlet var score: UILabel!
+    @IBOutlet var levelLabel: UILabel!
+    @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var modeLabel: UILabel!
     @IBOutlet var highscoreLabel: UILabel!
 
@@ -46,11 +46,11 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         // カードと画面両辺との間を1とすると、カードとカードの間が2、カードの一辺の長さを4となる
         standardLength = width / (oneColumnNum * 6)
 
-        level.textAlignment = NSTextAlignment.center
-        score.textAlignment = NSTextAlignment.center
+        levelLabel.textAlignment = NSTextAlignment.center
+        scoreLabel.textAlignment = NSTextAlignment.center
 
-        level.text = " Level \(levelNum)"
-        score.text = " Score \(scoreNum)"
+        levelLabel.text = " Level \(level)"
+        scoreLabel.text = " Score \(score)"
                
         highScore.refer("\(mode ?? "")")
         highscoreLabel.text = "High Score \(highScore.score)"
@@ -61,12 +61,12 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
                                  width: width / 2,
                                  height: standardLength * 2)
 
-        level.frame = CGRect(x: width / 2,
+        levelLabel.frame = CGRect(x: width / 2,
                              y: height / 18,
                              width: width / 2,
                              height: standardLength * 2)
 
-        score.frame = CGRect(x: 0,
+        scoreLabel.frame = CGRect(x: 0,
                              y: height * 2 / 18,
                              width: width / 2,
                              height: standardLength * 2)
@@ -236,19 +236,19 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             sounds.playSound(fileName: "correct", extentionName: "mp3")
 
             // Gameoverにならなければスコアを10点プラス
-            scoreNum += 10
+            score += 10
 
             // スコアを更新
-            score.text = " Score \(scoreNum)"
+            scoreLabel.text = " Score \(score)"
 
             // ハイスコア更新かチェック
-            highScore.updateScore(scoreNum, mode ?? "", &highscoreLabel.text!)
+            highScore.updateScore(score, mode ?? "", &highscoreLabel.text!)
 
             // カバーを除去
             sender.view?.removeFromSuperview()
 
             // 全てのカバーをタップ(カバーをタップした回数がレベル数より2枚多い回数まで達する)すれば次のレベルへ
-            if chooseOrder == levelNum + 2 {
+            if chooseOrder == level + 2 {
                 // lebelupの音源を再生
                 sounds.playSound(fileName: "levelup", extentionName: "mp3")
 
@@ -256,22 +256,22 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
                 reset()
 
                 // レベル数を1上げる
-                levelNum += 1
+                level += 1
 
                 // レベル数を更新
-                level.text = " Level \(levelNum)"
+                levelLabel.text = " Level \(level)"
 
                 // スコアを100点プラス
-                scoreNum += 100
+                score += 100
 
                 // スコアを更新
-                score.text = " Score \(scoreNum)"
+                scoreLabel.text = " Score \(score)"
 
                 // ハイスコア更新かチェック
-                highScore.updateScore(scoreNum, mode ?? "", &highscoreLabel.text!)
+                highScore.updateScore(score, mode ?? "", &highscoreLabel.text!)
                 
                 //レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動
-                if levelNum == Int(oneColumnNum) * Int(oneColumnNum) - 1 {
+                if level == Int(oneColumnNum) * Int(oneColumnNum) - 1 {
                     outputText = "Congratulations!!"
                     performSegue(withIdentifier: "gameover", sender: nil)
 
@@ -310,8 +310,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "gameover" {
             let gameover = segue.destination as! GameoverViewController
-            gameover.levelNum = levelNum
-            gameover.scoreNum = scoreNum
+            gameover.level = level
+            gameover.score = score
             gameover.oneColumnNum = oneColumnNum
             gameover.mode = mode
             
