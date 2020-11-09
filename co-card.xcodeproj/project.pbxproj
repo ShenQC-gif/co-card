@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA5CD4232559F994001556D8 /* ScreenShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5CD4222559F994001556D8 /* ScreenShot.swift */; };
 		EAD082CF25554D09008621B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD082CE25554D09008621B8 /* AppDelegate.swift */; };
 		EAD082D125554D09008621B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD082D025554D09008621B8 /* SceneDelegate.swift */; };
 		EAD082D325554D09008621B8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD082D225554D09008621B8 /* MainViewController.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA5CD4222559F994001556D8 /* ScreenShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShot.swift; sourceTree = "<group>"; };
 		EAD082CB25554D09008621B8 /* co-card.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "co-card.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD082CE25554D09008621B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAD082D025554D09008621B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				EAD082D425554D09008621B8 /* Main.storyboard */,
 				EAD082D925554D0C008621B8 /* LaunchScreen.storyboard */,
 				EAD0830125554DEC008621B8 /* Sounds.swift */,
+				EA5CD4222559F994001556D8 /* ScreenShot.swift */,
 				EAD0830C255557D7008621B8 /* correct.mp3 */,
 				EAD0830D255557D7008621B8 /* levelup.mp3 */,
 				EAD0830B255557D7008621B8 /* wrong.mp3 */,
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAD082D325554D09008621B8 /* MainViewController.swift in Sources */,
+				EA5CD4232559F994001556D8 /* ScreenShot.swift in Sources */,
 				EAD082CF25554D09008621B8 /* AppDelegate.swift in Sources */,
 				EAD0830625554E30008621B8 /* Highscore.swift in Sources */,
 				EAD082D125554D09008621B8 /* SceneDelegate.swift in Sources */,

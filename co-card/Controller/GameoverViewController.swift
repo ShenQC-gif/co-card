@@ -9,7 +9,9 @@
 import UIKit
 
 class GameoverViewController: UIViewController {
-    var screenShotImage = UIImage()
+//    var screenShotImage = UIImage()
+    
+    var screenShot = ScreenShot()
 
     var level = 0
     var score = 0
@@ -78,27 +80,36 @@ class GameoverViewController: UIViewController {
     }
 
     @IBAction func share(_: Any) {
-        // スクショをとる
-        takesScreenShot()
-
-        let items = [screenShotImage] as [Any]
-
-        // アクティビティビューに載せて、シェア
-        let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
-
-        present(activityVC, animated: true, completion: nil)
-    }
-
-    func takesScreenShot() {
+        
         let size = CGSize(width: width, height: height * 12 / 24)
-
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-
-        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-
-        screenShotImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
+        
+        let activityVC = screenShot.share(size: size, width: width, height: height, view: view)
+        
+        present(activityVC, animated: true, completion: nil)
+        
+        // スクショをとる
+//        takesScreenShot()
+//
+//        let items = [screenShotImage] as [Any]
+        
+//        // アクティビティビューに載せて、シェア
+//        let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+//
+//        present(activityVC, animated: true, completion: nil)
+        
+        
     }
+
+//    func takesScreenShot() {
+//        let size = CGSize(width: width, height: height * 12 / 24)
+//
+//        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+//
+//        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+//
+//        screenShotImage = UIGraphicsGetImageFromCurrentImageContext()!
+//        UIGraphicsEndImageContext()
+//    }
 
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "toMain" {
