@@ -1,6 +1,6 @@
 # CO-CARD
 CO-CARDは、一つずつ増えていく数字を順番にタップしていく、記憶力を鍛えるミニゲームです。  
-CO-CARD is a simple game. Just tap the numbers(1,2,3 → 1,2,3,4 → 1,2,3,4,5…) and go to the next level. 
+CO-CARD is a simple game. Search for the numbers (1,2,3 → 1,2,3,4 → 1,2,3,4,5…) and test your memory. 
 
  
 # DEMO
