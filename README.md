@@ -20,7 +20,7 @@ Numbers will appear on the cards, then remember and tap them in order.
 Get 10pt if you tap the correct card, and get 100pt if you clear the level.
 
 ④誤ったカードをタップすると終了します。スコアは難易度毎に記録されます。  
-The game will be over if you tap wrong card. Score will be recorded according to the mode.
+The game will be over when you tap the wrong card. Final score will be recorded by the mode.
 
 ⑤終了後、もう一度プレイしたければAgainを、別の難易度でプレイしたければHomeを、SNSでシェアしたければShareをタップします。  
 After game is over, tap Again if you play again, tap Home if you play in other mode, and tap Share if you share the score on SNS.
