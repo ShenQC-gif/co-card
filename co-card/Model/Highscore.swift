@@ -25,14 +25,12 @@ class Highscore {
     }
         
     //新しいスコアがハイスコアを更新時、ハイスコアを上書きし記憶
-    func updateScore(_ newScore: Int, _ mode: String, _ label: inout String){
+    func updateScore(_ newScore: Int, _ mode: String){
         
-        if newScore > score{
+        if newScore > score {
             
             score = newScore
             
-            label = "High Score \(score)"
-                        
             UserDefaults.standard.set(score, forKey: mode )
                         
             updateOrNot = true
