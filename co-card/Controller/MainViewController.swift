@@ -241,42 +241,50 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
 
             // 全てのカバーをタップ(カバーをタップした回数がレベル数より2枚多い回数まで達する)すれば次のレベルへ
             if chooseOrder == level + 2 {
-                // lebelupの音源を再生
-                sounds.playSound(fileName: "levelup", extentionName: "mp3")
-
-                // 一度カード、カバー、枚数をリセット
-                reset()
-
-                // レベル数を1上げる
-                level += 1
-
-                // レベル数を更新
-                levelLabel.text = " Level \(level)"
-
-                // スコアを100点プラス
-                score += 100
-
-                // スコアを更新
-                scoreLabel.text = " Score \(score)"
-
-                // ハイスコア更新かチェック
-                highScore.updateScore(score, mode ?? "", &highscoreLabel.text!)
                 
-                //レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動
-                if level == Int(oneColumnNum) * Int(oneColumnNum) - 1 {
-                    outputText = "Congratulations!!"
-                    performSegue(withIdentifier: "gameover", sender: nil)
-
-                //レベルがMaxに達していない時の挙動
-                } else {
-                    // 数字を割当てるカードの枚数を増やす
-                    cardCount += 1
-
-                    // 数字を割当て
-                    setNum()
-                }
+                nextLevel()
+                
             }
         }
+    }
+    
+    func nextLevel() {
+        
+        // levelupの音源を再生
+        sounds.playSound(fileName: "levelup", extentionName: "mp3")
+
+        // 一度カード、カバー、枚数をリセット
+        reset()
+
+        // レベル数を1上げる
+        level += 1
+
+        // レベル数を更新
+        levelLabel.text = " Level \(level)"
+
+        // スコアを100点プラス
+        score += 100
+
+        // スコアを更新
+        scoreLabel.text = " Score \(score)"
+
+        // ハイスコア更新かチェック
+        highScore.updateScore(score, mode ?? "", &highscoreLabel.text!)
+        
+        //レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動
+        if level == Int(oneColumnNum) * Int(oneColumnNum) - 1 {
+            outputText = "Congratulations!!"
+            performSegue(withIdentifier: "gameover", sender: nil)
+
+        //レベルがMaxに達していない時の挙動
+        } else {
+            // 数字を割当てるカードの枚数を増やす
+            cardCount += 1
+
+            // 数字を割当て
+            setNum()
+        }
+        
     }
 
     func reset() {
