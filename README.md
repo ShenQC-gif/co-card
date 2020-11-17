@@ -8,7 +8,7 @@ CO-CARD is a simple game. Search for the numbers (1,2,3 → 1,2,3,4 → 1,2,3,4,
 ![Videotogif](https://user-images.githubusercontent.com/66754677/98461567-83adb880-21f0-11eb-99b2-d16fbb82090f.gif)
 
 
-# HOT TO PLAY
+# HO TO PLAY
 
 ①難易度(※)を選択して、Startをタップします。  
 Choose a mode(※) from Easy/Normal/Hard/Very Hard and tap Start.
