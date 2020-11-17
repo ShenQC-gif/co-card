@@ -43,4 +43,4 @@ Try to get higer score, developing your memory.
 
 # Author
 Twitter: [@QC49508803](https://twitter.com/QC49508803)  
-mail to: shen24qichen@mail.com
+mail to: shen24qichen@gmail.com
