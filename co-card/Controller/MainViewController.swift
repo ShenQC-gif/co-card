@@ -14,12 +14,16 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     var sounds = Sounds()
     var highScore = Highscore()
 
+    //一行あたりのカードの枚数。難易度によって異なる。
     var oneColumnNum: CGFloat = 5
+    
+    //カードの一辺の長さ。カードの枚数によって異なる。
     var standardLength: CGFloat = 0
 
     var cardCount: CGFloat = 0
     var coverCount: CGFloat = 0
 
+    //カードをタップした順番
     var chooseOrder = 0
 
     var level = 1
@@ -56,25 +60,13 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         highscoreLabel.text = "High Score \(highScore.score)"
         modeLabel.text = mode
 
-        modeLabel.frame = CGRect(x: 0,
-                                 y: height / 18,
-                                 width: width / 2,
-                                 height: standardLength * 2)
+        modeLabel.frame = CGRect(x: 0, y: height / 18, width: width / 2, height: standardLength * 2)
 
-        levelLabel.frame = CGRect(x: width / 2,
-                             y: height / 18,
-                             width: width / 2,
-                             height: standardLength * 2)
+        levelLabel.frame = CGRect(x: width / 2, y: height / 18, width: width / 2, height: standardLength * 2)
 
-        scoreLabel.frame = CGRect(x: 0,
-                             y: height * 2 / 18,
-                             width: width / 2,
-                             height: standardLength * 2)
+        scoreLabel.frame = CGRect(x: 0, y: height * 2 / 18, width: width / 2, height: standardLength * 2)
 
-        highscoreLabel.frame = CGRect(x: width / 2,
-                                      y: height * 2 / 18,
-                                      width: width / 2,
-                                      height: standardLength * 2)
+        highscoreLabel.frame = CGRect(x: width / 2, y: height * 2 / 18, width: width / 2, height: standardLength * 2)
 
         // トップの下線のCALayerを作成
         let bottomBorder = CALayer()
