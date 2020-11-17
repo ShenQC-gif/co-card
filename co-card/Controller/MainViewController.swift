@@ -222,8 +222,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
                 self.performSegue(withIdentifier: "gameover", sender: nil)
             }
 
-            // タップしたカバーが正しい場合
-        } else {
+        } else { // タップしたカバーが正しい場合
             // 正解の音源を再生
             sounds.playSound(fileName: "correct", extentionName: "mp3")
 
@@ -234,7 +233,10 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             scoreLabel.text = " Score \(score)"
 
             // ハイスコア更新かチェック
-            highScore.updateScore(score, mode ?? "", &highscoreLabel.text!)
+            highScore.updateScore(score, mode!)
+            if highScore.updateOrNot {
+                highscoreLabel.text = "ハイスコア: \(highScore.score)"
+            }
 
             // カバーを除去
             sender.view?.removeFromSuperview()
@@ -269,7 +271,10 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         scoreLabel.text = " Score \(score)"
 
         // ハイスコア更新かチェック
-        highScore.updateScore(score, mode ?? "", &highscoreLabel.text!)
+        highScore.updateScore(score, mode!)
+        if highScore.updateOrNot {
+            highscoreLabel.text = "ハイスコア: \(highScore.score)"
+        }
         
         //レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動
         if level == Int(oneColumnNum) * Int(oneColumnNum) - 1 {
