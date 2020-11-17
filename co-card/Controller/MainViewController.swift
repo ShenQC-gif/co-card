@@ -69,11 +69,11 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         highscoreLabel.frame = CGRect(x: width / 2, y: height * 2 / 18, width: width / 2, height: standardLength * 2)
 
         // トップの下線のCALayerを作成
-        let bottomBorder = CALayer()
-        bottomBorder.frame = CGRect(x: 0, y: height * 3 / 18, width: width, height: 2.0)
-        bottomBorder.backgroundColor = UIColor.black.cgColor
+        let topBorder = CALayer()
+        topBorder.frame = CGRect(x: 0, y: height * 3 / 18, width: width, height: 2.0)
+        topBorder.backgroundColor = UIColor.black.cgColor
 
-        view.layer.addSublayer(bottomBorder)
+        view.layer.addSublayer(topBorder)
 
         setCard()
 
