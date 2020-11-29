@@ -17,7 +17,7 @@ class GameoverViewController: UIViewController {
     var newLevelNum = 1
     var newScoreNum = 0
     var cardPerLine: Int = 0
-    var mode: String?
+    var mode: Mode = .Normal
     var outputText: String?
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
@@ -75,7 +75,7 @@ class GameoverViewController: UIViewController {
         outputLabel.text = outputText
         levelLabel.text = " Level \(level)"
         scoreLabel.text = " Score \(score)"
-        modeLabel.text = mode
+        modeLabel.text = mode.rawValue
     }
 
     @IBAction func share(_: Any) {

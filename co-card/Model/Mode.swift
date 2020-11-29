@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+
+enum Mode: String{
+    
+    case Easy
+    
+    case Normal
+    
+    case Hard
+    
+    case VeryHard
+
+    }
+    

@@ -9,14 +9,15 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    
-    var modeNum = 0
-    var cardPerLine: Int = 0
+
+    var mode : Mode = .Normal
+    var cardPerLine = 0
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
+    
 
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var mode: UILabel!
+    @IBOutlet var modeLabel: UILabel!
     @IBOutlet var nextMode: UIButton!
     @IBOutlet var previousMode: UIButton!
     @IBOutlet var start: UIButton!
@@ -34,7 +35,7 @@ class HomeViewController: UIViewController {
                                     width: width * 2 / 10,
                                     height: height / 8)
 
-        mode.frame = CGRect(x: 0,
+        modeLabel.frame = CGRect(x: 0,
                             y: height * 3 / 8,
                             width: width,
                             height: height / 8)
@@ -52,53 +53,58 @@ class HomeViewController: UIViewController {
         start.layer.borderWidth = 2
         start.layer.cornerRadius = 10
 
-        checkMode()
+        reflectMode()
+
+        
     }
 
-    @IBAction func nextmode(_: Any) {
-        modeNum += 1
-        checkMode()
-    }
-
-    @IBAction func previousmode(_: Any) {
-        modeNum -= 1
-        checkMode()
-    }
-
-    func checkMode() {
-        switch modeNum {
-        case -1:
-            mode.text = "Easy"
-            previousMode.isHidden = true
-            cardPerLine = 4
-
-        case 0:
-            mode.text = "Normal"
-            nextMode.isHidden = false
-            previousMode.isHidden = false
-            cardPerLine = 5
-
-        case 1:
-            mode.text = "Hard"
-            nextMode.isHidden = false
-            previousMode.isHidden = false
-            cardPerLine = 6
-
-        case 2:
-            mode.text = "Very Hard"
-            nextMode.isHidden = true
-            cardPerLine = 6
-
-        default:
-            break
+    @IBAction func nextMode(_: Any) {
+        if mode == .Easy{
+            mode = .Normal
+        }else if mode == .Normal{
+            mode = .Hard
+        }else if mode == .Hard{
+            mode = .VeryHard
         }
+        reflectMode()
+    }
+
+    @IBAction func previousMode(_: Any) {
+        if mode == .VeryHard{
+            mode = .Hard
+        }else if mode == .Hard{
+            mode = .Normal
+        }else if mode == .Normal{
+            mode = .Easy
+        }
+        reflectMode()
+    }
+
+    func reflectMode() {
+        
+        modeLabel.text = mode.rawValue
+            
+        //一行あたりのカードの枚数を難易度毎に設定
+        switch mode {
+        
+        case .Easy:
+            cardPerLine = 4
+        case .Normal:
+            cardPerLine = 5
+        case .Hard:
+            cardPerLine = 6
+        case .VeryHard:
+            cardPerLine = 6
+            
+        }
+       
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "toMain" {
             let playscreen = segue.destination as! MainViewController
             playscreen.cardPerLine = cardPerLine
-            playscreen.mode = mode.text
+            playscreen.mode = mode
         }
     }
 }
