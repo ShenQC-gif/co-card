@@ -63,8 +63,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         levelLabel.text = " Level \(level)"
         scoreLabel.text = " Score \(score)"
                
-        highScore.refer("\(mode ?? "")")
-        highscoreLabel.text = "High Score \(highScore.score)"
+//        highScore.refer("\(mode ?? "")")
+        highscoreLabel.text = "High Score \(highScore.refer(mode ?? ""))"
         modeLabel.text = mode
 
         modeLabel.frame = CGRect(x: 0, y: height / 18, width: width / 2, height: standardLength * 2)
@@ -244,7 +244,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             // ハイスコア更新かチェック
             highScore.updateScore(score, mode!)
             if highScore.updateOrNot {
-                highscoreLabel.text = "ハイスコア: \(highScore.score)"
+                highscoreLabel.text = "High Score: \(highScore.score)"
             }
 
             // カバーを除去
@@ -282,7 +282,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         // ハイスコア更新かチェック
         highScore.updateScore(score, mode!)
         if highScore.updateOrNot {
-            highscoreLabel.text = "ハイスコア: \(highScore.score)"
+            highscoreLabel.text = "High Score: \(highScore.score)"
         }
         
         //レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動

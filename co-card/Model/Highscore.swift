@@ -10,16 +10,21 @@ import Foundation
 
 class Highscore {
     
-    var score = 0
+    var score = Int()
     var updateOrNot = false
     
     ///最新のハイスコア参照
-    func refer(_ key: String){
+    func refer(_ mode: String) -> Int{
         
-        if UserDefaults.standard.object(forKey: key) != nil {
+        if UserDefaults.standard.object(forKey: mode) != nil {
             
-            score = UserDefaults.standard.object(forKey: key) as! Int
-        
+            score = UserDefaults.standard.object(forKey: mode)as! Int
+            return score
+            
+        }else{
+            
+            return 0
+            
         }
         
     }
