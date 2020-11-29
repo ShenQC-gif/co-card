@@ -15,13 +15,18 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     var highScore = Highscore()
 
     //一行あたりのカードの枚数。難易度によって異なる。
-    var oneColumnNum: CGFloat = 5
+    var cardPerLine = Int()
+    //座標計算のため、CGFloat型でも管理
+    var cardPerLineInCGFloatType = CGFloat()
     
+    var cardCount = Int()
+    var cardCountInCGFloatType = CGFloat()
+    
+    var coverCount = CGFloat()
+    var coverPlotInCGFloatType = CGFloat()
+
     //カードの一辺の長さ。カードの枚数によって異なる。
     var standardLength: CGFloat = 0
-
-    var cardCount: CGFloat = 0
-    var coverCount: CGFloat = 0
 
     //カードをタップした順番
     var chooseOrder = 0
@@ -46,9 +51,11 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cardPerLineInCGFloatType = CGFloat(cardPerLine)
 
         // カードと画面両辺との間を1とすると、カードとカードの間が2、カードの一辺の長さを4となる
-        standardLength = width / (oneColumnNum * 6)
+        standardLength = width / (cardPerLineInCGFloatType * 6)
 
         levelLabel.textAlignment = NSTextAlignment.center
         scoreLabel.textAlignment = NSTextAlignment.center
@@ -86,7 +93,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
 
     func setCard() {
         // oneColumnNumの二乗枚カードを作成
-        for n in 1 ... Int(oneColumnNum) * Int(oneColumnNum) {
+        for n in 1 ... cardPerLine*cardPerLine {
             // Labelのインスタンスを作成
             let card = UILabel()
 
@@ -95,10 +102,11 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
 
             // 数字の書かれたカードの総数を1増やす
             cardCount += 1
+            cardCountInCGFloatType = CGFloat(cardCount)
 
-            // カードがoneColumnNumの数で一行になるよう座標を定義
-            let cardx = standardLength * (1 + 6 * (cardCount - 1).truncatingRemainder(dividingBy: oneColumnNum))
-            let cardy = height / 9 + 80 * ceil(cardCount / oneColumnNum)
+            // カードがoneColumnNum(=plotForCard)の数で一行になるよう座標を定義
+            let cardx = standardLength * (1 + 6 * (cardCountInCGFloatType - 1).truncatingRemainder(dividingBy: cardPerLineInCGFloatType))
+            let cardy = height / 9 + 80 * ceil(cardCountInCGFloatType / cardPerLineInCGFloatType)
 
             // カードの座標と大きさを定義
             card.frame = CGRect(x: cardx,
@@ -120,7 +128,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     /// カードに数字をランダムに割当て
     func setNum() {
         // 数字の書かれたカードの枚数
-        for n in 1 ... Int(cardCount) {
+        for n in 1 ... cardCount {
             // 1〜カードの枚数分の数字配列を作成
             numArray.append(n)
         }
@@ -129,7 +137,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         cardArray.shuffle()
 
         // シャッフルしたカード配列に数字を割当て
-        for n in 0 ..< Int(cardCount) {
+        for n in 0 ..< cardCount {
             cardArray[n].text = "\(numArray[n])"
         }
 
@@ -149,7 +157,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     /// カバーの作成
     func setCover() {
         // oneColumnNumの二乗枚カバーを作成
-        for n in 1 ... Int(oneColumnNum) * Int(oneColumnNum) {
+        for n in 1 ... cardPerLine*cardPerLine {
             // UILabelのインスタンス作成
             let cover = UILabel()
 
@@ -157,10 +165,11 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
 
             // カバーの枚数を増加
             coverCount += 1
+            coverPlotInCGFloatType = CGFloat(coverCount)
 
             // カバーがoneColumnNumの数で一行になるよう座標を定義
-            let coverx = standardLength * (1 + 6 * (coverCount - 1).truncatingRemainder(dividingBy: oneColumnNum))
-            let covery = height / 9 + 80 * ceil(coverCount / oneColumnNum)
+            let coverx = standardLength * (1 + 6 * (coverPlotInCGFloatType - 1).truncatingRemainder(dividingBy: cardPerLineInCGFloatType))
+            let covery = height / 9 + 80 * ceil(coverPlotInCGFloatType / cardPerLineInCGFloatType)
 
             // カバーの座標とサイズを設定
             cover.frame = CGRect(x: coverx,
@@ -277,7 +286,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         }
         
         //レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動
-        if level == Int(oneColumnNum) * Int(oneColumnNum) - 1 {
+        if level == cardPerLine * cardPerLine - 1 {
             outputText = "Congratulations!!"
             performSegue(withIdentifier: "gameover", sender: nil)
 
@@ -317,7 +326,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             let gameover = segue.destination as! GameoverViewController
             gameover.level = level
             gameover.score = score
-            gameover.oneColumnNum = oneColumnNum
+            gameover.cardPerLine = cardPerLine
             gameover.mode = mode
             
             if highScore.updateOrNot == true {

@@ -16,7 +16,7 @@ class GameoverViewController: UIViewController {
     var score = 0
     var newLevelNum = 1
     var newScoreNum = 0
-    var oneColumnNum: CGFloat = 0
+    var cardPerLine: Int = 0
     var mode: String?
     var outputText: String?
     let width = UIScreen.main.bounds.size.width

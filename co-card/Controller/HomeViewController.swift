@@ -11,7 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     var modeNum = 0
-    var oneColumnNum: CGFloat = 0
+    var cardPerLine: Int = 0
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
 
