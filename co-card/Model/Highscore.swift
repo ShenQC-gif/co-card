@@ -13,7 +13,7 @@ class Highscore {
     var score = 0
     var updateOrNot = false
     
-    //最新のハイスコア参照
+    ///最新のハイスコア参照
     func refer(_ key: String){
         
         if UserDefaults.standard.object(forKey: key) != nil {
@@ -24,7 +24,7 @@ class Highscore {
         
     }
         
-    //新しいスコアがハイスコアを更新時、ハイスコアを上書きし記憶
+    ///新しいスコアがハイスコアを更新時、ハイスコアを上書きし記憶
     func updateScore(_ newScore: Int, _ mode: String){
         
         if newScore > score {

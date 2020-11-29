@@ -117,7 +117,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
 
-    // カードに数字をランダムに割当て
+    /// カードに数字をランダムに割当て
     func setNum() {
         // 数字の書かれたカードの枚数
         for n in 1 ... Int(cardCount) {
@@ -146,7 +146,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
 
-    // カバーの作成
+    /// カバーの作成
     func setCover() {
         // oneColumnNumの二乗枚カバーを作成
         for n in 1 ... Int(oneColumnNum) * Int(oneColumnNum) {
@@ -204,7 +204,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         
     }
 
-    // カバーをタップした時の挙動
+    /// カバーをタップした時の挙動
     @objc func hide(_ sender: UITapGestureRecognizer) {
         // タップした順番を管理
         chooseOrder += 1
