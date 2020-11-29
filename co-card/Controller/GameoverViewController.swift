@@ -85,6 +85,8 @@ class GameoverViewController: UIViewController {
         let activityVC = screenShot.share(size: size, width: width, height: height, view: view)
         
         present(activityVC, animated: true, completion: nil)
+        
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "toMain" {
