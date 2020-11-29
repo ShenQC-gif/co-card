@@ -70,24 +70,24 @@ class HomeViewController: UIViewController {
         case -1:
             mode.text = "Easy"
             previousMode.isHidden = true
-            oneColumnNum = 4
+            cardPerLine = 4
 
         case 0:
             mode.text = "Normal"
             nextMode.isHidden = false
             previousMode.isHidden = false
-            oneColumnNum = 5
+            cardPerLine = 5
 
         case 1:
             mode.text = "Hard"
             nextMode.isHidden = false
             previousMode.isHidden = false
-            oneColumnNum = 6
+            cardPerLine = 6
 
         case 2:
             mode.text = "Very Hard"
             nextMode.isHidden = true
-            oneColumnNum = 6
+            cardPerLine = 6
 
         default:
             break
@@ -97,7 +97,7 @@ class HomeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "toMain" {
             let playscreen = segue.destination as! MainViewController
-            playscreen.oneColumnNum = oneColumnNum
+            playscreen.cardPerLine = cardPerLine
             playscreen.mode = mode.text
         }
     }

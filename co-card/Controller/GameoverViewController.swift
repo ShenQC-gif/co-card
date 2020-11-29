@@ -93,13 +93,13 @@ class GameoverViewController: UIViewController {
             let playscreen = segue.destination as! MainViewController
             playscreen.level = 1
             playscreen.score = newScoreNum
-            playscreen.oneColumnNum = oneColumnNum
+            playscreen.cardPerLine = cardPerLine
             playscreen.mode = mode
         }
 
         if segue.identifier == "toHome" {
             let home = segue.destination as! HomeViewController
-            home.oneColumnNum = 0
+            home.cardPerLine = 0
         }
     }
 }
