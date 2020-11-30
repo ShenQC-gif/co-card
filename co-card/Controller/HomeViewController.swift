@@ -59,24 +59,14 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction func nextMode(_: Any) {
-        if mode == .Easy{
-            mode = .Normal
-        }else if mode == .Normal{
-            mode = .Hard
-        }else if mode == .Hard{
-            mode = .VeryHard
-        }
+       
+        mode = mode.nextMode
         reflectMode()
     }
 
     @IBAction func previousMode(_: Any) {
-        if mode == .VeryHard{
-            mode = .Hard
-        }else if mode == .Hard{
-            mode = .Normal
-        }else if mode == .Normal{
-            mode = .Easy
-        }
+        
+        mode = mode.previousMode
         reflectMode()
     }
 

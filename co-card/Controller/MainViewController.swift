@@ -63,7 +63,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         levelLabel.text = " Level \(level)"
         scoreLabel.text = " Score \(score)"
                
-//        highScore.refer("\(mode ?? "")")
+
         highscoreLabel.text = "High Score \(highScore.refer(mode.rawValue))"
         modeLabel.text = mode.rawValue
 
