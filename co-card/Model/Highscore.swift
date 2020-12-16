@@ -13,7 +13,6 @@ class Highscore {
     var score = Int()
     var updateOrNot = false
     
-    
     ///最新のハイスコア参照
     func refer(_ mode: String) -> Int{
         
