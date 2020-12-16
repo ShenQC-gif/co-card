@@ -87,7 +87,7 @@ class HomeViewController: UIViewController {
             cardPerLine = 6
             
         }
-       
+
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
