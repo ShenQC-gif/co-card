@@ -54,7 +54,6 @@ class HomeViewController: UIViewController {
         start.layer.cornerRadius = 10
 
         reflectMode()
-
         
     }
 
