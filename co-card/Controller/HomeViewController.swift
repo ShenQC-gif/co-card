@@ -59,14 +59,31 @@ class HomeViewController: UIViewController {
 
     @IBAction func nextMode(_: Any) {
        
+        if mode.nextMode == .VeryHard {
+            nextMode.isEnabled = false
+            nextMode.setTitleColor(UIColor.gray, for: .normal)
+        }else {
+            previousMode.isEnabled = true
+            previousMode.setTitleColor(UIColor.black, for: .normal)
+        }
+        
         mode = mode.nextMode
         reflectMode()
     }
 
     @IBAction func previousMode(_: Any) {
         
+        if mode.previousMode == .Easy{
+            previousMode.isEnabled = false
+            previousMode.setTitleColor(UIColor.gray, for: .normal)
+        }else {
+            nextMode.isEnabled = true
+            nextMode.setTitleColor(UIColor.black, for: .normal)
+        }
+        
         mode = mode.previousMode
         reflectMode()
+        
     }
 
     func reflectMode() {
@@ -85,6 +102,7 @@ class HomeViewController: UIViewController {
         case .VeryHard:
             cardPerLine = 6
             
+      
         }
 
     }

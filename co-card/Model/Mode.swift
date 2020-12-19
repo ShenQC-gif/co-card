@@ -19,7 +19,7 @@ enum Mode: String{
     
     case VeryHard
     
-    var nextMode: Mode {
+    var nextMode: Mode! {
         switch self {
         case .Easy:
             return.Normal
@@ -28,14 +28,15 @@ enum Mode: String{
         case .Hard:
             return .VeryHard
         case .VeryHard:
-            return .VeryHard
+            return nil
+      
         }
     }
     
-    var previousMode: Mode {
+    var previousMode: Mode! {
         switch self {
         case .Easy:
-            return.Easy
+            return nil
         case .Normal:
             return .Easy
         case .Hard:
