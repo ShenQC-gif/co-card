@@ -75,7 +75,7 @@ class GameoverViewController: UIViewController {
         outputLabel.text = outputText
         levelLabel.text = " Level \(level)"
         scoreLabel.text = " Score \(score)"
-        modeLabel.text = mode.rawValue
+        modeLabel.text = mode.title
     }
 
     @IBAction func share(_: Any) {

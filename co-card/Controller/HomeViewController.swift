@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
 
     var mode : Mode = .Normal
+
     var cardPerLine = 0
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
@@ -58,37 +59,39 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction func nextMode(_: Any) {
+        
+        mode = mode.next ?? mode
        
-        if mode.nextMode == .VeryHard {
-            nextMode.isEnabled = false
+        if mode.next == nil{
+            nextMode.isHidden = true
             nextMode.setTitleColor(UIColor.gray, for: .normal)
         }else {
-            previousMode.isEnabled = true
+            previousMode.isHidden = false
             previousMode.setTitleColor(UIColor.black, for: .normal)
         }
         
-        mode = mode.nextMode
         reflectMode()
     }
 
     @IBAction func previousMode(_: Any) {
         
-        if mode.previousMode == .Easy{
-            previousMode.isEnabled = false
+        mode = mode.previous ?? mode
+        
+        if mode.previous == nil{
+            previousMode.isHidden = true
             previousMode.setTitleColor(UIColor.gray, for: .normal)
         }else {
-            nextMode.isEnabled = true
+            nextMode.isHidden = false
             nextMode.setTitleColor(UIColor.black, for: .normal)
         }
-        
-        mode = mode.previousMode
+    
         reflectMode()
         
     }
 
     func reflectMode() {
         
-        modeLabel.text = mode.rawValue
+        modeLabel.text = mode.title
             
         //一行あたりのカードの枚数を難易度毎に設定
         switch mode {
@@ -102,7 +105,6 @@ class HomeViewController: UIViewController {
         case .VeryHard:
             cardPerLine = 6
             
-      
         }
 
     }

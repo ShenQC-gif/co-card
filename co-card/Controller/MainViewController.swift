@@ -64,8 +64,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         scoreLabel.text = " Score \(score)"
                
 
-        highscoreLabel.text = "High Score \(highScore.refer(mode.rawValue))"
-        modeLabel.text = mode.rawValue
+        highscoreLabel.text = "High Score \(highScore.refer(mode.title))"
+        modeLabel.text = mode.title
 
         modeLabel.frame = CGRect(x: 0, y: height / 18, width: width / 2, height: standardLength * 2)
 
@@ -141,7 +141,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             cardArray[n].text = "\(numArray[n])"
         }
 
-        if mode.rawValue == "Very Hard" {
+        if mode.title == "Very Hard" {
             // 難易度がVery Hardなら数字割当てから2秒後にカバーを作成
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.setCover()
@@ -242,7 +242,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             scoreLabel.text = " Score \(score)"
 
             // ハイスコア更新かチェック
-            highScore.updateScore(score, mode.rawValue)
+            highScore.updateScore(score, mode.title)
             if highScore.updateOrNot {
                 highscoreLabel.text = "High Score: \(highScore.score)"
             }
@@ -280,7 +280,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         scoreLabel.text = " Score \(score)"
 
         // ハイスコア更新かチェック
-        highScore.updateScore(score, mode.rawValue)
+        highScore.updateScore(score, mode.title)
         if highScore.updateOrNot {
             highscoreLabel.text = "High Score: \(highScore.score)"
         }

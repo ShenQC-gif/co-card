@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum Mode: String{
+enum Mode: Int{
     
     case Easy
     
@@ -19,32 +19,21 @@ enum Mode: String{
     
     case VeryHard
     
-    var nextMode: Mode! {
-        switch self {
-        case .Easy:
-            return.Normal
-        case .Normal:
-            return .Hard
-        case .Hard:
-            return .VeryHard
-        case .VeryHard:
-            return nil
-      
-        }
+    var next: Mode? {
+        Mode(rawValue: rawValue + 1)
     }
-    
-    var previousMode: Mode! {
+  
+    var previous: Mode?{
+      Mode(rawValue: rawValue - 1)
+    }
+
+    var title: String {
         switch self {
-        case .Easy:
-            return nil
-        case .Normal:
-            return .Easy
-        case .Hard:
-            return .Normal
-        case .VeryHard:
-            return .Hard
+        case .Easy: return "Easy"
+        case .Normal: return "Normal"
+        case .Hard: return "Hard"
+        case .VeryHard: return "VeryHard"
         }
     }
     
 }
-    
