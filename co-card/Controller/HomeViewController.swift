@@ -19,8 +19,8 @@ class HomeViewController: UIViewController {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var modeLabel: UILabel!
-    @IBOutlet var nextMode: UIButton!
-    @IBOutlet var previousMode: UIButton!
+    @IBOutlet var nextModeBtn: UIButton!
+    @IBOutlet var previousModeBtn: UIButton!
     @IBOutlet var start: UIButton!
 
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
                                   width: width,
                                   height: height / 8)
 
-        previousMode.frame = CGRect(x: width / 20,
+        previousModeBtn.frame = CGRect(x: width / 20,
                                     y: height * 3 / 8,
                                     width: width * 2 / 10,
                                     height: height / 8)
@@ -41,7 +41,7 @@ class HomeViewController: UIViewController {
                             width: width,
                             height: height / 8)
 
-        nextMode.frame = CGRect(x: width * 15 / 20,
+        nextModeBtn.frame = CGRect(x: width * 15 / 20,
                                 y: height * 3 / 8,
                                 width: width * 2 / 10,
                                 height: height / 8)
@@ -63,11 +63,11 @@ class HomeViewController: UIViewController {
         mode = mode.next ?? mode
        
         if mode.next == nil{
-            nextMode.isHidden = true
-            nextMode.setTitleColor(UIColor.gray, for: .normal)
+            nextModeBtn.isHidden = true
+            nextModeBtn.setTitleColor(UIColor.gray, for: .normal)
         }else {
-            previousMode.isHidden = false
-            previousMode.setTitleColor(UIColor.black, for: .normal)
+            previousModeBtn.isHidden = false
+            previousModeBtn.setTitleColor(UIColor.black, for: .normal)
         }
         
         reflectMode()
@@ -78,11 +78,11 @@ class HomeViewController: UIViewController {
         mode = mode.previous ?? mode
         
         if mode.previous == nil{
-            previousMode.isHidden = true
-            previousMode.setTitleColor(UIColor.gray, for: .normal)
+            previousModeBtn.isHidden = true
+            previousModeBtn.setTitleColor(UIColor.gray, for: .normal)
         }else {
-            nextMode.isHidden = false
-            nextMode.setTitleColor(UIColor.black, for: .normal)
+            nextModeBtn.isHidden = false
+            nextModeBtn.setTitleColor(UIColor.black, for: .normal)
         }
     
         reflectMode()

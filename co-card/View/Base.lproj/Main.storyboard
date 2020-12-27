@@ -70,8 +70,8 @@
                     </view>
                     <connections>
                         <outlet property="modeLabel" destination="0eE-4j-GcA" id="cjk-b9-t8x"/>
-                        <outlet property="nextMode" destination="2mz-cD-BDg" id="6ON-r3-DTh"/>
-                        <outlet property="previousMode" destination="0Sb-Kq-R3P" id="U9Y-Es-zhc"/>
+                        <outlet property="nextModeBtn" destination="2mz-cD-BDg" id="hCc-zO-6AW"/>
+                        <outlet property="previousModeBtn" destination="0Sb-Kq-R3P" id="tyA-hW-dBO"/>
                         <outlet property="start" destination="A2q-nZ-yLY" id="FZh-ei-fu7"/>
                         <outlet property="titleLabel" destination="cAw-KC-g8U" id="gAd-RF-NN4"/>
                     </connections>
