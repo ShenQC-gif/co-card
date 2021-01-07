@@ -64,10 +64,8 @@ class HomeViewController: UIViewController {
        
         if mode.next == nil{
             nextModeBtn.isHidden = true
-            nextModeBtn.setTitleColor(UIColor.gray, for: .normal)
         }else {
             previousModeBtn.isHidden = false
-            previousModeBtn.setTitleColor(UIColor.black, for: .normal)
         }
         
         reflectMode()
@@ -79,10 +77,8 @@ class HomeViewController: UIViewController {
         
         if mode.previous == nil{
             previousModeBtn.isHidden = true
-            previousModeBtn.setTitleColor(UIColor.gray, for: .normal)
         }else {
             nextModeBtn.isHidden = false
-            nextModeBtn.setTitleColor(UIColor.black, for: .normal)
         }
     
         reflectMode()
