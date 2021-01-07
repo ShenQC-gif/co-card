@@ -19,8 +19,8 @@ class HomeViewController: UIViewController {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var modeLabel: UILabel!
-    @IBOutlet var nextModeBtn: UIButton!
-    @IBOutlet var previousModeBtn: UIButton!
+    @IBOutlet var nextModeButton: UIButton!
+    @IBOutlet var previousModeButton: UIButton!
     @IBOutlet var start: UIButton!
 
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
                                   width: width,
                                   height: height / 8)
 
-        previousModeBtn.frame = CGRect(x: width / 20,
+        previousModeButton.frame = CGRect(x: width / 20,
                                     y: height * 3 / 8,
                                     width: width * 2 / 10,
                                     height: height / 8)
@@ -41,7 +41,7 @@ class HomeViewController: UIViewController {
                             width: width,
                             height: height / 8)
 
-        nextModeBtn.frame = CGRect(x: width * 15 / 20,
+        nextModeButton.frame = CGRect(x: width * 15 / 20,
                                 y: height * 3 / 8,
                                 width: width * 2 / 10,
                                 height: height / 8)
@@ -63,9 +63,9 @@ class HomeViewController: UIViewController {
         mode = mode.next ?? mode
        
         if mode.next == nil{
-            nextModeBtn.isHidden = true
+            nextModeButton.isHidden = true
         }else {
-            previousModeBtn.isHidden = false
+            previousModeButton.isHidden = false
         }
         
         reflectMode()
@@ -76,9 +76,9 @@ class HomeViewController: UIViewController {
         mode = mode.previous ?? mode
         
         if mode.previous == nil{
-            previousModeBtn.isHidden = true
+            previousModeButton.isHidden = true
         }else {
-            nextModeBtn.isHidden = false
+            nextModeButton.isHidden = false
         }
     
         reflectMode()
