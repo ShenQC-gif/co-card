@@ -60,7 +60,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         levelLabel.textAlignment = NSTextAlignment.center
         scoreLabel.textAlignment = NSTextAlignment.center
 
-        levelLabel.text = level.firstLevel()
+        level.firstLevel()
+        levelLabel.text = level.CurrentLevel()
         
         score.firstScore()
         scoreLabel.text = score.currenScore()
@@ -267,8 +268,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         // 一度カード、カバー、枚数をリセット
         reset()
 
-        
-        levelLabel.text = level.nextLevel()
+        level.nextLevel()
+        levelLabel.text = level.CurrentLevel()
 
         // スコアを100点プラス
         score.plus(point: 100)

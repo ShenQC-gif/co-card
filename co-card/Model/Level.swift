@@ -13,15 +13,13 @@ class Level{
     var level = Int()
     
     ///最初のレベル
-    func firstLevel() -> String {
+    func firstLevel(){
         level = 1
-        return CurrentLevel()
     }
     
     ///レベルを1上げる
-    func nextLevel() -> String{
+    func nextLevel(){
         level += 1
-        return CurrentLevel()
     }
     
     ///現在のレベルを返す
