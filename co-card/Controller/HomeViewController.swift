@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    var mode : Mode = .Normal
+    var mode = Mode()
 
     var cardPerLine = 0
     let width = UIScreen.main.bounds.size.width
@@ -60,27 +60,17 @@ class HomeViewController: UIViewController {
 
     @IBAction func nextMode(_: Any) {
         
-        mode = mode.next ?? mode
-       
-        if mode.next == nil{
-            nextModeButton.isHidden = true
-        }else {
-            previousModeButton.isHidden = false
-        }
-        
+        mode.nextMode()
+        nextModeButton.isHidden = !mode.nextModeExists()
+        previousModeButton.isHidden = !mode.previousModeExists()
         reflectMode()
     }
 
     @IBAction func previousMode(_: Any) {
         
-        mode = mode.previous ?? mode
-        
-        if mode.previous == nil{
-            previousModeButton.isHidden = true
-        }else {
-            nextModeButton.isHidden = false
-        }
-    
+        mode.previousMode()
+        nextModeButton.isHidden = !mode.nextModeExists()
+        previousModeButton.isHidden = !mode.previousModeExists()
         reflectMode()
         
     }

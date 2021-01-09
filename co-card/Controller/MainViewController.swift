@@ -15,7 +15,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     var highScore = HighScore()
     var score = Score()
     var level = Level()
-
+    var mode = Mode()
+    
     //一行あたりのカードの枚数。難易度によって異なる。
     var cardPerLine = Int()
     //座標計算のため、CGFloat型でも管理
@@ -33,7 +34,6 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     //カードをタップした順番
     var chooseOrder = 0
 
-    var mode : Mode = .Normal
 
     var outputText: String?
 

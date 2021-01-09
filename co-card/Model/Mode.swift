@@ -19,12 +19,52 @@ enum Mode: Int{
     
     case VeryHard
     
-    var next: Mode? {
-        Mode(rawValue: rawValue + 1)
+    init(){
+        self = Mode.Normal
     }
-  
-    var previous: Mode?{
-      Mode(rawValue: rawValue - 1)
+    
+    mutating func nextMode(){
+        
+        if let nextMode = Mode(rawValue: rawValue + 1){
+            self = nextMode
+        }else{
+            return
+        }
+    }
+    
+    func nextModeExists() -> Bool{
+        
+        var ifExist: Bool
+        
+        if Mode(rawValue: rawValue + 1) != nil{
+            ifExist = true
+        }else{
+            ifExist = false
+        }
+        
+        return ifExist
+    }
+    
+    mutating func previousMode(){
+        
+        if let previousMode = Mode(rawValue: rawValue - 1){
+            self = previousMode
+        }else{
+            return
+        }
+    }
+    
+    func previousModeExists() -> Bool{
+        
+        var ifExist: Bool
+        
+        if Mode(rawValue: rawValue - 1) != nil{
+            ifExist = true
+        }else{
+            ifExist = false
+        }
+        
+        return ifExist
     }
 
     var title: String {
