@@ -12,7 +12,8 @@ import UIKit
 class MainViewController: UIViewController, AVAudioPlayerDelegate {
     
     var sounds = Sounds()
-    var highScore = Highscore()
+    var highScore = HighScore()
+    var score = Score()
     var level = Level()
 
     //一行あたりのカードの枚数。難易度によって異なる。
@@ -32,8 +33,6 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     //カードをタップした順番
     var chooseOrder = 0
 
-//    var level = 1
-    var score = 0
     var mode : Mode = .Normal
 
     var outputText: String?
@@ -62,10 +61,12 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         scoreLabel.textAlignment = NSTextAlignment.center
 
         levelLabel.text = level.firstLevel()
-        scoreLabel.text = " Score \(score)"
+        
+        score.firstScore()
+        scoreLabel.text = score.currenScore()
                
 
-        highscoreLabel.text = "High Score \(highScore.refer(mode.title))"
+        highscoreLabel.text = highScore.currentHighScore(mode.title)
         modeLabel.text = mode.title
 
         modeLabel.frame = CGRect(x: 0, y: height / 18, width: width / 2, height: standardLength * 2)
@@ -237,16 +238,14 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             sounds.playSound(fileName: "correct", extentionName: "mp3")
 
             // Gameoverにならなければスコアを10点プラス
-            score += 10
+            score.plus(point: 10)
 
             // スコアを更新
-            scoreLabel.text = " Score \(score)"
+            scoreLabel.text = score.currenScore()
 
             // ハイスコア更新かチェック
-            highScore.updateScore(score, mode.title)
-            if highScore.updateOrNot {
-                highscoreLabel.text = "High Score: \(highScore.score)"
-            }
+            highScore.updateScore(score.score, mode.title)
+            highscoreLabel.text = highScore.currentHighScore(mode.title)
 
             // カバーを除去
             sender.view?.removeFromSuperview()
@@ -272,16 +271,14 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         levelLabel.text = level.nextLevel()
 
         // スコアを100点プラス
-        score += 100
+        score.plus(point: 100)
 
         // スコアを更新
-        scoreLabel.text = " Score \(score)"
+        scoreLabel.text = score.currenScore()
 
         // ハイスコア更新かチェック
-        highScore.updateScore(score, mode.title)
-        if highScore.updateOrNot {
-            highscoreLabel.text = "High Score: \(highScore.score)"
-        }
+        highScore.updateScore(score.score, mode.title)
+        highscoreLabel.text = highScore.currentHighScore(mode.title)
         
         //レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動
         if level.level == cardPerLine * cardPerLine - 1 {
@@ -323,11 +320,11 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         if segue.identifier == "gameover" {
             let gameover = segue.destination as! GameoverViewController
             gameover.level.level = level.level
-            gameover.score = score
+            gameover.score.score = score.score
             gameover.cardPerLine = cardPerLine
             gameover.mode = mode
             
-            if highScore.updateOrNot == true {
+            if highScore.updatedOrNot == true {
                 gameover.outputText = "New Score!!"
             }else {
                 gameover.outputText = "Gameover"

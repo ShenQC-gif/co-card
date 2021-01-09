@@ -8,22 +8,21 @@
 
 import Foundation
 
-class Highscore {
+class HighScore {
     
-    var score = Int()
-    var updateOrNot = false
+    var highScore = Int()
+    var updatedOrNot = Bool()
     
     ///最新のハイスコア参照
-    func refer(_ mode: String) -> Int{
+    func refer(_ mode: String){
         
         if UserDefaults.standard.object(forKey: mode) != nil {
             
-            score = UserDefaults.standard.object(forKey: mode)as! Int
-            return score
+            highScore = UserDefaults.standard.object(forKey: mode)as! Int
             
         }else{
             
-            return 0
+            highScore = 0
             
         }
         
@@ -32,14 +31,23 @@ class Highscore {
     ///新しいスコアがハイスコアを更新時、ハイスコアを上書きし記憶
     func updateScore(_ newScore: Int, _ mode: String){
         
-        if newScore > score {
+        if newScore > highScore {
             
-            score = newScore
+            updatedOrNot = true
             
-            UserDefaults.standard.set(score, forKey: mode )
-                        
-            updateOrNot = true
+            highScore = newScore
+            
+            UserDefaults.standard.set(highScore, forKey: mode )
+           
         }
+        
+    }
+    
+    func currentHighScore(_ mode: String) -> String{
+        
+        refer(mode)
+        
+        return "High Score \(highScore)"
         
     }
     

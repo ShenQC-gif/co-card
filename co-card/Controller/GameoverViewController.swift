@@ -12,10 +12,8 @@ class GameoverViewController: UIViewController {
     
     var screenShot = ScreenShot()
     var level = Level()
+    var score = Score()
 
-    var score = 0
-    var newLevelNum = 1
-    var newScoreNum = 0
     var cardPerLine: Int = 0
     var mode: Mode = .Normal
     var outputText: String?
@@ -74,7 +72,7 @@ class GameoverViewController: UIViewController {
 
         outputLabel.text = outputText
         levelLabel.text = level.CurrentLevel()
-        scoreLabel.text = " Score \(score)"
+        scoreLabel.text = score.currenScore()
         modeLabel.text = mode.title
     }
 
@@ -91,7 +89,6 @@ class GameoverViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "toMain" {
             let playscreen = segue.destination as! MainViewController
-            playscreen.score = newScoreNum
             playscreen.cardPerLine = cardPerLine
             playscreen.mode = mode
         }
