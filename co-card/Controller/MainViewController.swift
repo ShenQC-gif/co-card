@@ -13,6 +13,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     
     var sounds = Sounds()
     var highScore = Highscore()
+    var level = Level()
 
     //一行あたりのカードの枚数。難易度によって異なる。
     var cardPerLine = Int()
@@ -31,7 +32,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     //カードをタップした順番
     var chooseOrder = 0
 
-    var level = 1
+//    var level = 1
     var score = 0
     var mode : Mode = .Normal
 
@@ -60,7 +61,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         levelLabel.textAlignment = NSTextAlignment.center
         scoreLabel.textAlignment = NSTextAlignment.center
 
-        levelLabel.text = " Level \(level)"
+        levelLabel.text = level.firstLevel()
         scoreLabel.text = " Score \(score)"
                
 
@@ -251,7 +252,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             sender.view?.removeFromSuperview()
 
             // 全てのカバーをタップ(カバーをタップした回数がレベル数より2枚多い回数まで達する)すれば次のレベルへ
-            if chooseOrder == level + 2 {
+            if chooseOrder == level.level + 2 {
                 
                 nextLevel()
                 
@@ -267,11 +268,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         // 一度カード、カバー、枚数をリセット
         reset()
 
-        // レベル数を1上げる
-        level += 1
-
-        // レベル数を更新
-        levelLabel.text = " Level \(level)"
+        
+        levelLabel.text = level.nextLevel()
 
         // スコアを100点プラス
         score += 100
@@ -286,7 +284,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         }
         
         //レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動
-        if level == cardPerLine * cardPerLine - 1 {
+        if level.level == cardPerLine * cardPerLine - 1 {
             outputText = "Congratulations!!"
             performSegue(withIdentifier: "gameover", sender: nil)
 
@@ -324,7 +322,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "gameover" {
             let gameover = segue.destination as! GameoverViewController
-            gameover.level = level
+            gameover.level.level = level.level
             gameover.score = score
             gameover.cardPerLine = cardPerLine
             gameover.mode = mode
