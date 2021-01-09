@@ -141,7 +141,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             cardArray[n].text = "\(numArray[n])"
         }
 
-        if mode.title == "Very Hard" {
+        if mode == .VeryHard {
             // 難易度がVery Hardなら数字割当てから2秒後にカバーを作成
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.setCover()
