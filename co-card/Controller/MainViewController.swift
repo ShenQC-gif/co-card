@@ -104,7 +104,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             cardCount += 1
             cardCountInCGFloatType = CGFloat(cardCount)
 
-            // カードがoneColumnNum(=plotForCard)の数で一行になるよう座標を定義
+            // カードがoneColumnNumの数で一行になるよう座標を定義
             let cardx = standardLength * (1 + 6 * (cardCountInCGFloatType - 1).truncatingRemainder(dividingBy: cardPerLineInCGFloatType))
             let cardy = height / 9 + 80 * ceil(cardCountInCGFloatType / cardPerLineInCGFloatType)
 
