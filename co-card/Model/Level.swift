@@ -10,21 +10,19 @@ import Foundation
 
 class Level{
     
-    var level = Int()
+    var level:Int
     
-    ///最初のレベル
-    func firstLevel(){
-        level = 1
+    init(){
+        self.level = 1
     }
-    
     ///レベルを1上げる
     func nextLevel(){
         level += 1
     }
     
     ///現在のレベルを返す
-    func CurrentLevel() -> String{
-        return "Level \(level)"
+    func currentLevel() -> Int{
+        return level
     }
     
 }

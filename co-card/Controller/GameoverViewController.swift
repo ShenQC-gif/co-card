@@ -71,7 +71,7 @@ class GameoverViewController: UIViewController {
         share.layer.borderWidth = 2
 
         outputLabel.text = outputText
-        levelLabel.text = level.CurrentLevel()
+        levelLabel.text = "Level \(level.currentLevel())"
         scoreLabel.text = score.currenScore()
         modeLabel.text = mode.title
     }
