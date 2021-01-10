@@ -72,7 +72,7 @@ class GameoverViewController: UIViewController {
 
         outputLabel.text = outputText
         levelLabel.text = "Level \(level.currentLevel())"
-        scoreLabel.text = score.currenScore()
+        scoreLabel.text = "Score \(score.currenScore())"
         modeLabel.text = mode.title
     }
 

@@ -61,9 +61,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         scoreLabel.textAlignment = NSTextAlignment.center
 
         levelLabel.text = "Level \(level.currentLevel())"
-        
-        score.firstScore()
-        scoreLabel.text = score.currenScore()
+        scoreLabel.text = "Score \(score.currenScore())"
                
 
         highscoreLabel.text = highScore.currentHighScore(mode.title)
@@ -241,7 +239,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             score.plus(point: 10)
 
             // スコアを更新
-            scoreLabel.text = score.currenScore()
+            scoreLabel.text = "Score \(score.currenScore())"
 
             // ハイスコア更新かチェック
             highScore.updateScore(score.score, mode.title)
@@ -274,7 +272,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         score.plus(point: 100)
 
         // スコアを更新
-        scoreLabel.text = score.currenScore()
+        scoreLabel.text = "Score \(score.currenScore())"
 
         // ハイスコア更新かチェック
         highScore.updateScore(score.score, mode.title)

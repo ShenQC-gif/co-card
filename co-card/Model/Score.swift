@@ -10,12 +10,11 @@ import Foundation
 
 class Score {
     
-    var score = Int()
+    var score:Int
     
-    func firstScore(){
-        
-        score = 0
-                    }
+    init() {
+        self.score = 0
+    }
     
     func plus(point: Int){
         
@@ -23,9 +22,9 @@ class Score {
        
     }
     
-    func currenScore() -> String{
+    func currenScore() -> Int{
         
-        return "Score \(score)"
+        return score
         
     }
     
