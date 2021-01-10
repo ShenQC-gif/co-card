@@ -152,8 +152,8 @@
 			children = (
 				EAD082CE25554D09008621B8 /* AppDelegate.swift */,
 				EAD082D025554D09008621B8 /* SceneDelegate.swift */,
-				EAD082D225554D09008621B8 /* MainViewController.swift */,
 				EAD0830725554E56008621B8 /* HomeViewController.swift */,
+				EAD082D225554D09008621B8 /* MainViewController.swift */,
 				EAD0830925554E8A008621B8 /* GameoverViewController.swift */,
 			);
 			path = Controller;

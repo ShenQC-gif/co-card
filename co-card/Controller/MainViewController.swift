@@ -43,7 +43,12 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     var cardArray: [UILabel] = []
     var coverArray: [UILabel] = []
     var numArray: [Int] = []
+    
 
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var topViewButtomBorder: UILabel!
+    
+    
     @IBOutlet var levelLabel: UILabel!
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var modeLabel: UILabel!
@@ -58,31 +63,17 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         // カードと画面両辺との間を1とすると、カードとカードの間が2、カードの一辺の長さを4となる
         standardLength = width / (cardPerLineInCGFloatType * 6)
 
-        levelLabel.textAlignment = NSTextAlignment.center
-        scoreLabel.textAlignment = NSTextAlignment.center
-
         levelLabel.text = "Level \(level.currentLevel())"
         scoreLabel.text = "Score \(score.currenScore())"
                
 
         highscoreLabel.text = highScore.currentHighScore(mode.title)
         modeLabel.text = mode.title
-
-        modeLabel.frame = CGRect(x: 0, y: height / 18, width: width / 2, height: standardLength * 2)
-
-        levelLabel.frame = CGRect(x: width / 2, y: height / 18, width: width / 2, height: standardLength * 2)
-
-        scoreLabel.frame = CGRect(x: 0, y: height * 2 / 18, width: width / 2, height: standardLength * 2)
-
-        highscoreLabel.frame = CGRect(x: width / 2, y: height * 2 / 18, width: width / 2, height: standardLength * 2)
-
-        // トップの下線のCALayerを作成
-        let topBorder = CALayer()
-        topBorder.frame = CGRect(x: 0, y: height * 3 / 18, width: width, height: 2.0)
-        topBorder.backgroundColor = UIColor.black.cgColor
-
-        view.layer.addSublayer(topBorder)
-
+        
+        //topViewにボーダーを追加
+        topViewButtomBorder.layer.borderWidth = 2
+        
+    
         setCard()
 
         // 最初に数字が書かれたカードは3枚
@@ -90,6 +81,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         setNum()
 
     }
+    
 
 
     func setCard() {
