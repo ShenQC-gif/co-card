@@ -76,7 +76,7 @@ class GameoverViewController: UIViewController {
         modeLabel.text = mode.title
     }
 
-    @IBAction func share(_: Any) {
+    @IBAction func onShareButtonTapped(_: Any) {
         
         let size = CGSize(width: width, height: height * 12 / 24)
         

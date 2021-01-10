@@ -58,7 +58,7 @@ class HomeViewController: UIViewController {
         
     }
 
-    @IBAction func nextMode(_: Any) {
+    @IBAction func onNextModeButtonTapped(_: Any) {
         
         mode.nextMode()
         nextModeButton.isHidden = !mode.nextModeExists()
@@ -66,7 +66,7 @@ class HomeViewController: UIViewController {
         reflectMode()
     }
 
-    @IBAction func previousMode(_: Any) {
+    @IBAction func onPreviousModeButtonTapped(_: Any) {
         
         mode.previousMode()
         nextModeButton.isHidden = !mode.nextModeExists()

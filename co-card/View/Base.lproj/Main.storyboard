@@ -32,7 +32,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="previousMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J0a-Dw-n0e"/>
+                                    <action selector="onPreviousModeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E3Y-cb-pU9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mz-cD-BDg">
@@ -43,7 +43,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="nextMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zhh-rU-bdv"/>
+                                    <action selector="onNextModeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zY8-6v-eXW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2q-nZ-yLY">
@@ -187,7 +187,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="share:" destination="MkH-9b-T7b" eventType="touchUpInside" id="xtr-vf-PKX"/>
+                                    <action selector="onShareButtonTapped:" destination="MkH-9b-T7b" eventType="touchUpInside" id="f9K-Tj-BOU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1RX-Ii-hSC">
@@ -221,7 +221,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lOx-RI-vx1"/>
         <segue reference="GZm-6x-DKS"/>
     </inferredMetricsTieBreakers>
     <resources>
