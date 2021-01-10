@@ -17,8 +17,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     var level = Level()
     var mode = Mode()
     
-    //一行あたりのカードの枚数。難易度によって異なる。
-    var cardPerLine = Int()
+    //カード総数
+    var totalCard = Int()
     //座標計算のため、CGFloat型でも管理
     var cardPerLineInCGFloatType = CGFloat()
     
@@ -52,8 +52,9 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cardPerLineInCGFloatType = CGFloat(cardPerLine)
-
+        cardPerLineInCGFloatType = CGFloat(mode.cardPerLine)
+        totalCard = mode.cardPerLine*mode.cardPerLine
+        
         // カードと画面両辺との間を1とすると、カードとカードの間が2、カードの一辺の長さを4となる
         standardLength = width / (cardPerLineInCGFloatType * 6)
 
@@ -92,8 +93,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
 
 
     func setCard() {
-        // oneColumnNumの二乗枚カードを作成
-        for n in 1 ... cardPerLine*cardPerLine {
+        // カードを作成
+        for n in 1 ... totalCard {
             // Labelのインスタンスを作成
             let card = UILabel()
 
@@ -156,8 +157,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
 
     /// カバーの作成
     func setCover() {
-        // oneColumnNumの二乗枚カバーを作成
-        for n in 1 ... cardPerLine*cardPerLine {
+        // カバーを作成
+        for _ in 1 ... totalCard {
             // UILabelのインスタンス作成
             let cover = UILabel()
 
@@ -279,7 +280,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         highscoreLabel.text = highScore.currentHighScore(mode.title)
         
         //レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動
-        if level.level == cardPerLine * cardPerLine - 1 {
+        if level.level == totalCard - 1 {
             outputText = "Congratulations!!"
             performSegue(withIdentifier: "gameover", sender: nil)
 
@@ -319,7 +320,6 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             let gameover = segue.destination as! GameoverViewController
             gameover.level.level = level.level
             gameover.score.score = score.score
-            gameover.cardPerLine = cardPerLine
             gameover.mode = mode
             
             if highScore.updatedOrNot == true {

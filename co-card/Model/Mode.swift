@@ -76,4 +76,14 @@ enum Mode: Int{
         }
     }
     
+    var cardPerLine: Int {
+        switch self {
+        case .Easy: return 4
+        case .Normal: return 5
+        case .Hard, .VeryHard: return 6
+        }
+    }
+    
+    
+    
 }

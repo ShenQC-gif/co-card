@@ -12,7 +12,6 @@ class HomeViewController: UIViewController {
 
     var mode = Mode()
 
-    var cardPerLine = 0
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     
@@ -54,51 +53,32 @@ class HomeViewController: UIViewController {
         start.layer.borderWidth = 2
         start.layer.cornerRadius = 10
 
-        reflectMode()
+        modeLabel.text = mode.title
         
     }
 
     @IBAction func onNextModeButtonTapped(_: Any) {
         
         mode.nextMode()
+        modeLabel.text = mode.title
         nextModeButton.isHidden = !mode.nextModeExists()
         previousModeButton.isHidden = !mode.previousModeExists()
-        reflectMode()
+        
     }
 
     @IBAction func onPreviousModeButtonTapped(_: Any) {
         
         mode.previousMode()
+        modeLabel.text = mode.title
         nextModeButton.isHidden = !mode.nextModeExists()
         previousModeButton.isHidden = !mode.previousModeExists()
-        reflectMode()
         
-    }
-
-    func reflectMode() {
         
-        modeLabel.text = mode.title
-            
-        //一行あたりのカードの枚数を難易度毎に設定
-        switch mode {
-        
-        case .Easy:
-            cardPerLine = 4
-        case .Normal:
-            cardPerLine = 5
-        case .Hard:
-            cardPerLine = 6
-        case .VeryHard:
-            cardPerLine = 6
-            
-        }
-
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "toMain" {
             let playscreen = segue.destination as! MainViewController
-            playscreen.cardPerLine = cardPerLine
             playscreen.mode = mode
         }
     }

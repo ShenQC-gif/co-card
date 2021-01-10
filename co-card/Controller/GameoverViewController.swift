@@ -13,9 +13,8 @@ class GameoverViewController: UIViewController {
     var screenShot = ScreenShot()
     var level = Level()
     var score = Score()
-
-    var cardPerLine: Int = 0
     var mode = Mode()
+    
     var outputText: String?
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
@@ -89,13 +88,7 @@ class GameoverViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "toMain" {
             let playscreen = segue.destination as! MainViewController
-            playscreen.cardPerLine = cardPerLine
             playscreen.mode = mode
-        }
-
-        if segue.identifier == "toHome" {
-            let home = segue.destination as! HomeViewController
-            home.cardPerLine = 0
         }
     }
 }
