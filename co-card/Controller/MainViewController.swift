@@ -19,230 +19,172 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     
     //カード総数
     var totalCard = Int()
-    //座標計算のため、CGFloat型でも管理
-    var cardPerLineInCGFloatType = CGFloat()
-    
-    var cardCount = Int()
-    var cardCountInCGFloatType = CGFloat()
-    
-    var coverCount = CGFloat()
-    var coverPlotInCGFloatType = CGFloat()
-
-    //カードの一辺の長さ。カードの枚数によって異なる。
-    var standardLength: CGFloat = 0
-
+    //数字の書かれるカードの枚数
+    var cardWithNumber = Int()
     //カードをタップした順番
-    var chooseOrder = 0
-
-
+    var tapOrder = Int()
     var outputText: String?
-
-    let width = UIScreen.main.bounds.size.width
-    let height = UIScreen.main.bounds.size.height
-
     var cardArray: [UILabel] = []
-    var coverArray: [UILabel] = []
-    var numArray: [Int] = []
     
-
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var topViewButtomBorder: UILabel!
-    
-    
     @IBOutlet var levelLabel: UILabel!
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var modeLabel: UILabel!
     @IBOutlet var highscoreLabel: UILabel!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cardPerLineInCGFloatType = CGFloat(mode.cardPerLine)
         totalCard = mode.cardPerLine*mode.cardPerLine
-        
-        // カードと画面両辺との間を1とすると、カードとカードの間が2、カードの一辺の長さを4となる
-        standardLength = width / (cardPerLineInCGFloatType * 6)
-
         levelLabel.text = "Level \(level.currentLevel())"
         scoreLabel.text = "Score \(score.currenScore())"
-               
-
         highscoreLabel.text = highScore.currentHighScore(mode.title)
         modeLabel.text = mode.title
         
         //topViewにボーダーを追加
         topViewButtomBorder.layer.borderWidth = 2
         
-    
         setCard()
-
+        
         // 最初に数字が書かれたカードは3枚
-        cardCount = 3
+        cardWithNumber = 3
         setNum()
-
+        
     }
     
-
-
     func setCard() {
+        
         // カードを作成
         for n in 1 ... totalCard {
+            
             // Labelのインスタンスを作成
             let card = UILabel()
-
+            
             // Labelにカードプロパティを付与
-            boxProperty(label: card)
-
+            cardProperty(label: card)
+            
+            let width = UIScreen.main.bounds.size.width
+            let height = UIScreen.main.bounds.size.height
+            
             // 数字の書かれたカードの総数を1増やす
-            cardCount += 1
-            cardCountInCGFloatType = CGFloat(cardCount)
-
+            let cardOrderInCGFloatType = CGFloat(n)
+            
+            let cardPerLineInCGFloatType = CGFloat(mode.cardPerLine)
+            // カードと画面両辺との間を1とすると、カードとカードの間が2、カードの一辺の長さを4となる
+            let standardLength = width / (cardPerLineInCGFloatType * 6)
+            
+            
             // カードがoneColumnNumの数で一行になるよう座標を定義
-            let cardx = standardLength * (1 + 6 * (cardCountInCGFloatType - 1).truncatingRemainder(dividingBy: cardPerLineInCGFloatType))
-            let cardy = height / 9 + 80 * ceil(cardCountInCGFloatType / cardPerLineInCGFloatType)
-
+            let cardx = standardLength * (1 + 6 * (cardOrderInCGFloatType - 1).truncatingRemainder(dividingBy: cardPerLineInCGFloatType))
+            let cardy = height * 0.15 + 80 * ceil(cardOrderInCGFloatType / cardPerLineInCGFloatType)
+            
             // カードの座標と大きさを定義
             card.frame = CGRect(x: cardx,
                                 y: cardy,
                                 width: standardLength * 4,
                                 height: standardLength * 4)
-
+            
             // 画面にカードを追加
             view.addSubview(card)
-
-            // カードにタグを設定
-            card.tag = n
-
             // カード配列にカードを追加
             cardArray.append(card)
         }
-    }
-
-    /// カードに数字をランダムに割当て
-    func setNum() {
-        // 数字の書かれたカードの枚数
-        for n in 1 ... cardCount {
-            // 1〜カードの枚数分の数字配列を作成
-            numArray.append(n)
-        }
-
-        // カード配列をシャッフル
-        cardArray.shuffle()
-
-        // シャッフルしたカード配列に数字を割当て
-        for n in 0 ..< cardCount {
-            cardArray[n].text = "\(numArray[n])"
-        }
-
-        if mode == .VeryHard {
-            // 難易度がVery Hardなら数字割当てから2秒後にカバーを作成
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.setCover()
-            }
-        } else {
-            // 難易度がVery Hard以外なら数字割当てから3秒後にカバーを作成
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                self.setCover()
-            }
-        }
-    }
-
-    /// カバーの作成
-    func setCover() {
-        // カバーを作成
-        for _ in 1 ... totalCard {
-            // UILabelのインスタンス作成
-            let cover = UILabel()
-
-            boxProperty(label: cover)
-
-            // カバーの枚数を増加
-            coverCount += 1
-            coverPlotInCGFloatType = CGFloat(coverCount)
-
-            // カバーがoneColumnNumの数で一行になるよう座標を定義
-            let coverx = standardLength * (1 + 6 * (coverPlotInCGFloatType - 1).truncatingRemainder(dividingBy: cardPerLineInCGFloatType))
-            let covery = height / 9 + 80 * ceil(coverPlotInCGFloatType / cardPerLineInCGFloatType)
-
-            // カバーの座標とサイズを設定
-            cover.frame = CGRect(x: coverx,
-                                 y: covery,
-                                 width: standardLength * 4,
-                                 height: standardLength * 4)
-
-            // viewにカバーを追加
-            view.addSubview(cover)
-
-            // カバーを管理するために配列に組み込む
-            coverArray.append(cover)
-
+        
+        for card in cardArray{
             // UIGestureのインスタンス作成、hideアクション呼び出し
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hide(_:)))
-
-            // カバーをタップできるようにする
-            cover.isUserInteractionEnabled = true
-
-            // カバーにタップジェスチャーを追加
-            cover.addGestureRecognizer(tapGesture)
-        }
-
-        // カバーにタグを付与
-        for n in 0 ..< numArray.count {
-            // シャッフル後のカード配列の各カードのタグをカバー配列のカバーに割当て
-            coverArray[cardArray[n].tag - 1].tag = numArray[n]
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onCardTapped(_:)))
+            
+            // カードにタップジェスチャーを追加
+            card.addGestureRecognizer(tapGesture)
         }
     }
     
-   
-        //カード・カバーのプロパティを設定
-        func boxProperty(label: UILabel) {
-           
-            label.textAlignment = NSTextAlignment.center // 横揃えの設定
-            label.textColor = UIColor.black // テキストカラーの設定
-            label.backgroundColor = UIColor.white
-            label.layer.borderWidth = 2
-            label.layer.cornerRadius = 10
-            label.font = UIFont(name: "HiraKakuProN-W6", size: 17) // フォントの設定
+    /// カードに数字をランダムに割当て
+    func setNum() {
+        
+        // カード配列をシャッフル
+        cardArray.shuffle()
+        
+        // cardWithNumberの数だけカードに数字とタグを付与
+        for n in 1 ... cardWithNumber {
+            // 1〜カードの枚数分の数字配列を作成
+            cardArray[n].text = "\(n)"
+            cardArray[n].tag = n
+        }
+        
+        changeCardTextColor(.black)
+        ifCardCanBeTapped(false)
+        
+        if mode == .VeryHard {
+            // 難易度がVery Hardなら数字割当てから2秒後にカードを作成
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.changeCardTextColor(.white)
+                // カードをタップできるようにする
+                self.ifCardCanBeTapped(true)
+            }
+        } else {
+            // 難易度がVery Hard以外なら数字割当てから3秒後にカードを作成
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.changeCardTextColor(.white)
+                // カードをタップできるようにする
+                self.ifCardCanBeTapped(true)
+                
+            }
+        }
+    }
+    
+    func changeCardTextColor(_ color: UIColor){
+        
+        for card in cardArray{
+            card.textColor = color
+        }
         
     }
-
-    /// カバーをタップした時の挙動
-    @objc func hide(_ sender: UITapGestureRecognizer) {
+    
+    func ifCardCanBeTapped(_ trueOrNot: Bool){
+        for card in self.cardArray{
+            card.isUserInteractionEnabled = trueOrNot
+        }
+    }
+    
+    /// カードをタップした時の挙動
+    @objc func onCardTapped(_ sender: UITapGestureRecognizer) {
         // タップした順番を管理
-        chooseOrder += 1
-
-        // タップした順番とカバーのタグが一致しなければGameover
-        if (sender.view?.tag)! != chooseOrder {
-            // カバーを除去
-            sender.view?.removeFromSuperview()
-
+        tapOrder += 1
+        
+        //タップされたら数字を表示し、再度タップできないようにする
+        let card = (sender.view) as UIView? as? UILabel
+        card?.textColor = .black
+        card?.isUserInteractionEnabled = false
+        
+        // タップした順番とカードの数字(=タグ)が一致しなければGameover
+        if (sender.view?.tag)! != tapOrder {
+            
             // 間違いの効果音
             sounds.playSound(fileName: "wrong", extentionName: "mp3")
-
+            
             // Gameoverの画面へ
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.performSegue(withIdentifier: "gameover", sender: nil)
             }
-
-        } else { // タップしたカバーが正しい場合
+            
+        } else { // タップしたカードが正しい場合
             // 正解の音源を再生
             sounds.playSound(fileName: "correct", extentionName: "mp3")
-
+            
             // Gameoverにならなければスコアを10点プラス
             score.plus(point: 10)
-
+            
             // スコアを更新
             scoreLabel.text = "Score \(score.currenScore())"
-
+            
             // ハイスコア更新かチェック
             highScore.updateScore(score.score, mode.title)
             highscoreLabel.text = highScore.currentHighScore(mode.title)
-
-            // カバーを除去
-            sender.view?.removeFromSuperview()
-
-            // 全てのカバーをタップ(カバーをタップした回数がレベル数より2枚多い回数まで達する)すれば次のレベルへ
-            if chooseOrder == level.level + 2 {
+            
+            // 全てのカードをタップ(カードをタップした回数がレベル数より2枚多い回数まで達する)すれば次のレベルへ
+            if tapOrder == level.level + 2 {
                 
                 nextLevel()
                 
@@ -250,23 +192,34 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     
+    //カードのプロパティを設定
+    func cardProperty(label: UILabel) {
+        
+        label.textAlignment = NSTextAlignment.center // 横揃えの設定
+        label.textColor = UIColor.black // テキストカラーの設定
+        label.backgroundColor = UIColor.white
+        label.layer.borderWidth = 2
+        label.layer.cornerRadius = 10
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 17) // フォントの設定
+        
+    }
+    
     func nextLevel() {
         
         // levelupの音源を再生
         sounds.playSound(fileName: "levelup", extentionName: "mp3")
-
-        // 一度カード、カバー、枚数をリセット
+        
+        // 一度カード、枚数をリセット
         reset()
-
+        
         level.nextLevel()
         levelLabel.text = "Level \(level.currentLevel())"
-
+        
         // スコアを100点プラス
         score.plus(point: 100)
-
         // スコアを更新
         scoreLabel.text = "Score \(score.currenScore())"
-
+        
         // ハイスコア更新かチェック
         highScore.updateScore(score.score, mode.title)
         highscoreLabel.text = highScore.currentHighScore(mode.title)
@@ -275,35 +228,26 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         if level.level == totalCard - 1 {
             outputText = "Congratulations!!"
             performSegue(withIdentifier: "gameover", sender: nil)
-
-        //レベルがMaxに達していない時の挙動
+            
+            //レベルがMaxに達していない時の挙動
         } else {
             // 数字を割当てるカードの枚数を増やす
-            cardCount += 1
-
+            cardWithNumber += 1
+            
             // 数字を割当て
             setNum()
         }
         
     }
-
+    
     func reset() {
         // 全てのカードの数字をリセット
-        for n in 0 ..< numArray.count {
-            cardArray[n].text = ""
+        for card in cardArray {
+            card.text = ""
         }
-        // 全てのカバーを隠す
-        for n in 0 ..< coverArray.count {
-            coverArray[n].isHidden = true
-        }
-
-        // カバー枚数、選んだ順番をリセット
-        coverCount = 0
-        chooseOrder = 0
-
-        // カバー配列、数字配列をリセット
-        coverArray = []
-        numArray = []
+        // 選んだ順番をリセット
+        tapOrder = 0
+        
     }
     
     // gameover画面に遷移する際のデータの受け渡し
@@ -319,7 +263,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             }else {
                 gameover.outputText = "Gameover"
             }
-                
+            
         }
     }
 }

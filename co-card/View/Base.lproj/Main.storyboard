@@ -117,7 +117,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iuP-np-8b0" userLabel="Top View">
-                                <rect key="frame" x="0.0" y="64" width="414" height="134.5"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="134.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAL-3Z-7TN">
                                         <rect key="frame" x="0.0" y="0.0" width="207" height="67"/>
@@ -164,7 +164,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2W-l5-b94" userLabel="topViewButtomBorder">
-                                <rect key="frame" x="0.0" y="196.5" width="414" height="2"/>
+                                <rect key="frame" x="0.0" y="176.5" width="414" height="2"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="7Qf-ZR-4R8"/>
                                 </constraints>
@@ -178,7 +178,7 @@
                         <constraints>
                             <constraint firstItem="R2W-l5-b94" firstAttribute="bottom" secondItem="iuP-np-8b0" secondAttribute="bottom" id="6pn-h4-MfS"/>
                             <constraint firstItem="R2W-l5-b94" firstAttribute="centerX" secondItem="7Cf-x3-qCO" secondAttribute="centerX" id="MDL-tS-Bzb"/>
-                            <constraint firstItem="iuP-np-8b0" firstAttribute="top" secondItem="YtY-bF-00b" secondAttribute="top" constant="20" id="cp4-2x-jNi"/>
+                            <constraint firstItem="iuP-np-8b0" firstAttribute="top" secondItem="YtY-bF-00b" secondAttribute="top" id="cp4-2x-jNi"/>
                             <constraint firstItem="R2W-l5-b94" firstAttribute="width" secondItem="7Cf-x3-qCO" secondAttribute="width" id="g7t-fL-Gna"/>
                             <constraint firstItem="iuP-np-8b0" firstAttribute="height" secondItem="7Cf-x3-qCO" secondAttribute="height" multiplier="0.15" id="gbI-w6-Wdp"/>
                             <constraint firstItem="iuP-np-8b0" firstAttribute="width" secondItem="7Cf-x3-qCO" secondAttribute="width" id="rgr-sK-xG5"/>
