@@ -16,7 +16,42 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     var score = Score()
     var level = Level()
     var mode = Mode()
+    var cardLabel = CardLabel()
     
+    private let modeLabel:UILabel={
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 20)
+        return label
+    }()
+    
+    private let levelLabel:UILabel={
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 20)
+        return label
+    }()
+    
+    private let scoreLabel:UILabel={
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 20)
+        return label
+    }()
+    
+    private let highScoreLabel:UILabel={
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 20)
+        return label
+    }()
+    
+    private let borderLabel:UILabel={
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 20)
+        return label
+    }()
     //カード総数
     var totalCard = Int()
     //数字の書かれるカードの枚数
@@ -26,24 +61,49 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     var outputText: String?
     var cardArray: [UILabel] = []
     
-    @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var topViewButtomBorder: UILabel!
-    @IBOutlet var levelLabel: UILabel!
-    @IBOutlet var scoreLabel: UILabel!
-    @IBOutlet var modeLabel: UILabel!
-    @IBOutlet var highscoreLabel: UILabel!
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height
+        
+        var safeAreaTop : CGFloat = 0
+        
+        if #available(iOS 11.0, *) {
+            safeAreaTop = self.view.safeAreaInsets.top
+        }
+        
+        modeLabel.frame = CGRect(x: 0, y: safeAreaTop, width: width/2, height: height*0.075)
+        
+        levelLabel.frame = CGRect(x: width/2, y: safeAreaTop, width: width/2, height: height*0.075)
+        
+        scoreLabel.frame = CGRect(x: 0, y: safeAreaTop + height*0.075, width: width/2, height: height*0.075)
+        
+        highScoreLabel.frame = CGRect(x: width/2, y: safeAreaTop + height*0.075, width: width/2, height: height*0.075)
+        
+        borderLabel.frame = CGRect(x: 0, y: safeAreaTop + height*0.15, width: width, height: 2)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(modeLabel)
+        view.addSubview(levelLabel)
+        view.addSubview(scoreLabel)
+        view.addSubview(highScoreLabel)
+        view.addSubview(borderLabel)
+        
         totalCard = mode.cardPerLine*mode.cardPerLine
+        
         levelLabel.text = "Level \(level.currentLevel())"
         scoreLabel.text = "Score \(score.currenScore())"
-        highscoreLabel.text = "High Score \(highScore.currentHighScore(mode.title))"
+        highScoreLabel.text = "High Score \(highScore.currentHighScore(mode.title))"
         modeLabel.text = mode.title
         
         //topViewにボーダーを追加
-        topViewButtomBorder.layer.borderWidth = 2
+        borderLabel.layer.borderWidth = 2
         
         setCard()
         
@@ -58,32 +118,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         // カードを作成
         for n in 1 ... totalCard {
             
-            // Labelのインスタンスを作成
-            let card = UILabel()
-            
-            // Labelにカードプロパティを付与
-            cardProperty(label: card)
-            
-            let width = UIScreen.main.bounds.size.width
-            let height = UIScreen.main.bounds.size.height
-            
-            // 数字の書かれたカードの総数を1増やす
-            let cardOrderInCGFloatType = CGFloat(n)
-            
-            let cardPerLineInCGFloatType = CGFloat(mode.cardPerLine)
-            // カードと画面両辺との間を1とすると、カードとカードの間が2、カードの一辺の長さを4となる
-            let standardLength = width / (cardPerLineInCGFloatType * 6)
-            
-            
-            // カードがoneColumnNumの数で一行になるよう座標を定義
-            let cardx = standardLength * (1 + 6 * (cardOrderInCGFloatType - 1).truncatingRemainder(dividingBy: cardPerLineInCGFloatType))
-            let cardy = height * 0.15 + 80 * ceil(cardOrderInCGFloatType / cardPerLineInCGFloatType)
-            
-            // カードの座標と大きさを定義
-            card.frame = CGRect(x: cardx,
-                                y: cardy,
-                                width: standardLength * 4,
-                                height: standardLength * 4)
+            let card = cardLabel.createCard(mode: mode, numberOfCard: n)
             
             // 画面にカードを追加
             view.addSubview(card)
@@ -108,7 +143,6 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         
         // cardWithNumberの数だけカードに数字とタグを付与
         for n in 1 ... cardWithNumber {
-            // 1〜カードの枚数分の数字配列を作成
             cardArray[n].text = "\(n)"
             cardArray[n].tag = n
         }
@@ -117,17 +151,15 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         ifCardCanBeTapped(false)
         
         if mode == .VeryHard {
-            // 難易度がVery Hardなら数字割当てから2秒後にカードを作成
+            // 難易度がVery Hardなら数字割当てから2秒後にカードの文字が消える
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.changeCardTextColor(.white)
-                // カードをタップできるようにする
                 self.ifCardCanBeTapped(true)
             }
         } else {
-            // 難易度がVery Hard以外なら数字割当てから3秒後にカードを作成
+            // 難易度がVery Hard以外なら数字割当てから3秒後にカードの文字が消える
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 self.changeCardTextColor(.white)
-                // カードをタップできるようにする
                 self.ifCardCanBeTapped(true)
                 
             }
@@ -185,18 +217,6 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     
-    //カードのプロパティを設定
-    func cardProperty(label: UILabel) {
-        
-        label.textAlignment = NSTextAlignment.center // 横揃えの設定
-        label.textColor = UIColor.black // テキストカラーの設定
-        label.backgroundColor = UIColor.white
-        label.layer.borderWidth = 2
-        label.layer.cornerRadius = 10
-        label.font = UIFont(name: "HiraKakuProN-W6", size: 17) // フォントの設定
-        
-    }
-    
     func nextLevel() {
         
         // levelupの音源を再生
@@ -236,7 +256,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         
         // ハイスコア更新かチェック
         highScore.updateScore(score.score, mode.title)
-        highscoreLabel.text = "High Score \(highScore.currentHighScore(mode.title))"
+        highScoreLabel.text = "High Score \(highScore.currentHighScore(mode.title))"
         
     }
     

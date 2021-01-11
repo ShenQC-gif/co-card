@@ -26,6 +26,7 @@
 		EAD08310255557D7008621B8 /* levelup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EAD0830D255557D7008621B8 /* levelup.mp3 */; };
 		EAF36A9A25A94CC6008C522D /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36A9925A94CC6008C522D /* Level.swift */; };
 		EAF36A9F25A95351008C522D /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36A9E25A95351008C522D /* Score.swift */; };
+		EAF36AB525AC2438008C522D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36AB425AC2438008C522D /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		EAD0830D255557D7008621B8 /* levelup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = levelup.mp3; sourceTree = "<group>"; };
 		EAF36A9925A94CC6008C522D /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		EAF36A9E25A95351008C522D /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		EAF36AB425AC2438008C522D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			children = (
 				EAD082D425554D09008621B8 /* Main.storyboard */,
 				EAD082D925554D0C008621B8 /* LaunchScreen.storyboard */,
+				EAF36AB425AC2438008C522D /* Card.swift */,
 				EAD0830125554DEC008621B8 /* Sounds.swift */,
 				EA5CD4222559F994001556D8 /* ScreenShot.swift */,
 				EAD0830C255557D7008621B8 /* correct.mp3 */,
@@ -326,6 +329,7 @@
 				EAD082D125554D09008621B8 /* SceneDelegate.swift in Sources */,
 				EAD0830A25554E8A008621B8 /* GameoverViewController.swift in Sources */,
 				EAD0830225554DEC008621B8 /* Sounds.swift in Sources */,
+				EAF36AB525AC2438008C522D /* Card.swift in Sources */,
 				EAA011A32573A175008F0531 /* Mode.swift in Sources */,
 				EAF36A9A25A94CC6008C522D /* Level.swift in Sources */,
 				EAF36A9F25A95351008C522D /* Score.swift in Sources */,
