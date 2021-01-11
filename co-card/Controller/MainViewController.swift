@@ -39,7 +39,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         totalCard = mode.cardPerLine*mode.cardPerLine
         levelLabel.text = "Level \(level.currentLevel())"
         scoreLabel.text = "Score \(score.currenScore())"
-        highscoreLabel.text = highScore.currentHighScore(mode.title)
+        highscoreLabel.text = "High Score \(highScore.currentHighScore(mode.title))"
         modeLabel.text = mode.title
         
         //topViewにボーダーを追加
@@ -181,7 +181,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             
             // ハイスコア更新かチェック
             highScore.updateScore(score.score, mode.title)
-            highscoreLabel.text = highScore.currentHighScore(mode.title)
+            highscoreLabel.text = "High Score \(highScore.currentHighScore(mode.title))"
             
             // 全てのカードをタップ(カードをタップした回数がレベル数より2枚多い回数まで達する)すれば次のレベルへ
             if tapOrder == level.level + 2 {
@@ -222,7 +222,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         
         // ハイスコア更新かチェック
         highScore.updateScore(score.score, mode.title)
-        highscoreLabel.text = highScore.currentHighScore(mode.title)
+        highscoreLabel.text = "High Score \(highScore.currentHighScore(mode.title))"
         
         //レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動
         if level.level == totalCard - 1 {

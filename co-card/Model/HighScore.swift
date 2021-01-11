@@ -43,11 +43,11 @@ class HighScore {
         
     }
     
-    func currentHighScore(_ mode: String) -> String{
+    func currentHighScore(_ mode: String) -> Int{
         
         refer(mode)
         
-        return "High Score \(highScore)"
+        return highScore
         
     }
     
