@@ -174,14 +174,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             sounds.playSound(fileName: "correct", extentionName: "mp3")
             
             // Gameoverにならなければスコアを10点プラス
-            score.plus(point: 10)
-            
-            // スコアを更新
-            scoreLabel.text = "Score \(score.currenScore())"
-            
-            // ハイスコア更新かチェック
-            highScore.updateScore(score.score, mode.title)
-            highscoreLabel.text = "High Score \(highScore.currentHighScore(mode.title))"
+            pointPlus(point: 10)
             
             // 全てのカードをタップ(カードをタップした回数がレベル数より2枚多い回数まで達する)すれば次のレベルへ
             if tapOrder == level.level + 2 {
@@ -209,20 +202,14 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         // levelupの音源を再生
         sounds.playSound(fileName: "levelup", extentionName: "mp3")
         
-        // 一度カード、枚数をリセット
+        // 一度カードの表示、枚数をリセット
         reset()
         
         level.nextLevel()
         levelLabel.text = "Level \(level.currentLevel())"
         
         // スコアを100点プラス
-        score.plus(point: 100)
-        // スコアを更新
-        scoreLabel.text = "Score \(score.currenScore())"
-        
-        // ハイスコア更新かチェック
-        highScore.updateScore(score.score, mode.title)
-        highscoreLabel.text = "High Score \(highScore.currentHighScore(mode.title))"
+        pointPlus(point: 100)
         
         //レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動
         if level.level == totalCard - 1 {
@@ -237,6 +224,19 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             // 数字を割当て
             setNum()
         }
+        
+    }
+    
+    ///スコアを加点し、ハイスコア更新かチェック
+    func pointPlus(point:Int){
+        
+        score.plus(point: point)
+        // スコアを更新
+        scoreLabel.text = "Score \(score.currenScore())"
+        
+        // ハイスコア更新かチェック
+        highScore.updateScore(score.score, mode.title)
+        highscoreLabel.text = "High Score \(highScore.currentHighScore(mode.title))"
         
     }
     
