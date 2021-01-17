@@ -27,6 +27,7 @@
 		EAF36A9A25A94CC6008C522D /* CurrentLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36A9925A94CC6008C522D /* CurrentLevel.swift */; };
 		EAF36A9F25A95351008C522D /* CurrentScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36A9E25A95351008C522D /* CurrentScore.swift */; };
 		EAF36AB525AC2438008C522D /* CardLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36AB425AC2438008C522D /* CardLabel.swift */; };
+		EAF36B6A25B467AE008C522D /* ModeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36B6925B467AE008C522D /* ModeTitle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		EAF36A9925A94CC6008C522D /* CurrentLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLevel.swift; sourceTree = "<group>"; };
 		EAF36A9E25A95351008C522D /* CurrentScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentScore.swift; sourceTree = "<group>"; };
 		EAF36AB425AC2438008C522D /* CardLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLabel.swift; sourceTree = "<group>"; };
+		EAF36B6925B467AE008C522D /* ModeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeTitle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 			children = (
 				EAD082D425554D09008621B8 /* Main.storyboard */,
 				EAD082D925554D0C008621B8 /* LaunchScreen.storyboard */,
+				EAF36B6925B467AE008C522D /* ModeTitle.swift */,
 				EAF36AB425AC2438008C522D /* CardLabel.swift */,
 				EAD0830125554DEC008621B8 /* Sounds.swift */,
 				EA5CD4222559F994001556D8 /* ScreenShot.swift */,
@@ -325,6 +328,7 @@
 				EAD082D325554D09008621B8 /* MainViewController.swift in Sources */,
 				EA5CD4232559F994001556D8 /* ScreenShot.swift in Sources */,
 				EAD082CF25554D09008621B8 /* AppDelegate.swift in Sources */,
+				EAF36B6A25B467AE008C522D /* ModeTitle.swift in Sources */,
 				EAD0830625554E30008621B8 /* HighScore.swift in Sources */,
 				EAD082D125554D09008621B8 /* SceneDelegate.swift in Sources */,
 				EAD0830A25554E8A008621B8 /* GameoverViewController.swift in Sources */,

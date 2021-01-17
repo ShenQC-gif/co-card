@@ -67,14 +67,7 @@ enum Mode: Int{
         return ifExist
     }
 
-    var title: String {
-        switch self {
-        case .Easy: return "Easy"
-        case .Normal: return "Normal"
-        case .Hard: return "Hard"
-        case .VeryHard: return "VeryHard"
-        }
-    }
+    
     
     var cardPerLine: Int {
         switch self {

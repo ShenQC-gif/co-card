@@ -14,6 +14,7 @@ class GameoverViewController: UIViewController {
     var level = CurrentLevel()
     var score = CurrentScore()
     var mode = Mode()
+    var modeTitle = ModeTitle()
     
     var outputText: String?
 
@@ -35,7 +36,7 @@ class GameoverViewController: UIViewController {
         outputLabel.text = outputText
         levelLabel.text = "Level \(level.currentLevel())"
         scoreLabel.text = "Score \(score.currenScore())"
-        modeLabel.text = mode.title
+        modeLabel.text = modeTitle.returnTitle(mode:mode)
     }
 
     @IBAction func onShareButtonTapped(_: Any) {

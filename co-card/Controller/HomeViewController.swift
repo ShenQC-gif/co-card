@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
 
     var mode = Mode()
+    var modeTitle = ModeTitle()
 
     @IBOutlet var modeLabel: UILabel!
     @IBOutlet var nextModeButton: UIButton!
@@ -23,14 +24,14 @@ class HomeViewController: UIViewController {
         start.layer.borderWidth = 2
         start.layer.cornerRadius = 10
 
-        modeLabel.text = mode.title
+        modeLabel.text = modeTitle.returnTitle(mode:mode)
         
     }
 
     @IBAction func onNextModeButtonTapped(_: Any) {
         
         mode.nextMode()
-        modeLabel.text = mode.title
+        modeLabel.text = modeTitle.returnTitle(mode:mode)
         nextModeButton.isHidden = !mode.nextModeExists()
         previousModeButton.isHidden = !mode.previousModeExists()
         
@@ -39,7 +40,7 @@ class HomeViewController: UIViewController {
     @IBAction func onPreviousModeButtonTapped(_: Any) {
         
         mode.previousMode()
-        modeLabel.text = mode.title
+        modeLabel.text = modeTitle.returnTitle(mode:mode)
         nextModeButton.isHidden = !mode.nextModeExists()
         previousModeButton.isHidden = !mode.previousModeExists()
         

@@ -16,6 +16,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     var score = CurrentScore()
     var level = CurrentLevel()
     var mode = Mode()
+    var modeTitle = ModeTitle()
     var cardLabel = CardLabel()
     
     private let modeLabel:UILabel={
@@ -99,8 +100,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         
         levelLabel.text = "Level \(level.currentLevel())"
         scoreLabel.text = "Score \(score.currenScore())"
-        highScoreLabel.text = "High Score \(highScore.currentHighScore(mode.title))"
-        modeLabel.text = mode.title
+        highScoreLabel.text = "High Score \(highScore.currentHighScore(modeTitle.returnTitle(mode:mode)))"
+        modeLabel.text = modeTitle.returnTitle(mode:mode)
         
         //topViewにボーダーを追加
         borderLabel.layer.borderWidth = 2
@@ -255,8 +256,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         scoreLabel.text = "Score \(score.currenScore())"
         
         // ハイスコア更新かチェック
-        highScore.updateScore(score.score, mode.title)
-        highScoreLabel.text = "High Score \(highScore.currentHighScore(mode.title))"
+        highScore.updateScore(score.score, modeTitle.returnTitle(mode:mode))
+        highScoreLabel.text = "High Score \(highScore.currentHighScore(modeTitle.returnTitle(mode:mode)))"
         
     }
     
