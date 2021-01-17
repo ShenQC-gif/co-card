@@ -13,8 +13,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     
     var sounds = Sounds()
     var highScore = HighScore()
-    var score = Score()
-    var level = Level()
+    var score = CurrentScore()
+    var level = CurrentLevel()
     var mode = Mode()
     var cardLabel = CardLabel()
     

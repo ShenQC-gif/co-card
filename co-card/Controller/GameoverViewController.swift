@@ -11,8 +11,8 @@ import UIKit
 class GameoverViewController: UIViewController {
     
     var screenShot = ScreenShot()
-    var level = Level()
-    var score = Score()
+    var level = CurrentLevel()
+    var score = CurrentScore()
     var mode = Mode()
     
     var outputText: String?
