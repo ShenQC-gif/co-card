@@ -24,8 +24,8 @@
 		EAD0830E255557D7008621B8 /* wrong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EAD0830B255557D7008621B8 /* wrong.mp3 */; };
 		EAD0830F255557D7008621B8 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EAD0830C255557D7008621B8 /* correct.mp3 */; };
 		EAD08310255557D7008621B8 /* levelup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EAD0830D255557D7008621B8 /* levelup.mp3 */; };
-		EAF36A9A25A94CC6008C522D /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36A9925A94CC6008C522D /* Level.swift */; };
-		EAF36A9F25A95351008C522D /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36A9E25A95351008C522D /* Score.swift */; };
+		EAF36A9A25A94CC6008C522D /* CurrentLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36A9925A94CC6008C522D /* CurrentLevel.swift */; };
+		EAF36A9F25A95351008C522D /* CurrentScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36A9E25A95351008C522D /* CurrentScore.swift */; };
 		EAF36AB525AC2438008C522D /* CardLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36AB425AC2438008C522D /* CardLabel.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,8 +70,8 @@
 		EAD0830B255557D7008621B8 /* wrong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wrong.mp3; sourceTree = "<group>"; };
 		EAD0830C255557D7008621B8 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		EAD0830D255557D7008621B8 /* levelup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = levelup.mp3; sourceTree = "<group>"; };
-		EAF36A9925A94CC6008C522D /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
-		EAF36A9E25A95351008C522D /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		EAF36A9925A94CC6008C522D /* CurrentLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLevel.swift; sourceTree = "<group>"; };
+		EAF36A9E25A95351008C522D /* CurrentScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentScore.swift; sourceTree = "<group>"; };
 		EAF36AB425AC2438008C522D /* CardLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,8 +182,8 @@
 			children = (
 				EAD0830525554E30008621B8 /* HighScore.swift */,
 				EAA011A22573A175008F0531 /* Mode.swift */,
-				EAF36A9925A94CC6008C522D /* Level.swift */,
-				EAF36A9E25A95351008C522D /* Score.swift */,
+				EAF36A9925A94CC6008C522D /* CurrentLevel.swift */,
+				EAF36A9E25A95351008C522D /* CurrentScore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -331,8 +331,8 @@
 				EAD0830225554DEC008621B8 /* Sounds.swift in Sources */,
 				EAF36AB525AC2438008C522D /* CardLabel.swift in Sources */,
 				EAA011A32573A175008F0531 /* Mode.swift in Sources */,
-				EAF36A9A25A94CC6008C522D /* Level.swift in Sources */,
-				EAF36A9F25A95351008C522D /* Score.swift in Sources */,
+				EAF36A9A25A94CC6008C522D /* CurrentLevel.swift in Sources */,
+				EAF36A9F25A95351008C522D /* CurrentScore.swift in Sources */,
 				EAD0830825554E56008621B8 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
