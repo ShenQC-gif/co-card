@@ -11,7 +11,7 @@ import UIKit
 
 class ScreenShot {
     
-    var screenShotImage = UIImage()
+    private var screenShotImage = UIImage()
     
     func take(size: CGSize, width: CGFloat, height: CGFloat, view:UIView) {
 

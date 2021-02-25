@@ -10,12 +10,11 @@ import UIKit
 
 class GameoverViewController: UIViewController {
     
-    var screenShot = ScreenShot()
+    private var screenShot = ScreenShot()
     var level = CurrentLevel()
     var score = CurrentScore()
     var mode = Mode()
     var modeTitle = ModeTitle()
-    
     var outputText: String?
 
     @IBOutlet var outputLabel: UILabel!

@@ -11,7 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
 
     var mode = Mode()
-    var modeTitle = ModeTitle()
+    private var modeTitle = ModeTitle()
 
     @IBOutlet var modeLabel: UILabel!
     @IBOutlet var nextModeButton: UIButton!

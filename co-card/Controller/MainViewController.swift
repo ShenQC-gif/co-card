@@ -11,13 +11,13 @@ import UIKit
 
 class MainViewController: UIViewController, AVAudioPlayerDelegate {
     
-    var sounds = Sounds()
-    var highScore = HighScore()
-    var score = CurrentScore()
-    var level = CurrentLevel()
+    private var sounds = Sounds()
+    private var highScore = HighScore()
+    private var score = CurrentScore()
+    private var level = CurrentLevel()
     var mode = Mode()
-    var modeTitle = ModeTitle()
-    var cardLabel = CardLabel()
+    private var modeTitle = ModeTitle()
+    private var cardLabel = CardLabel()
     
     private let modeLabel:UILabel={
         let label = UILabel()
@@ -54,13 +54,13 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         return label
     }()
     //カード総数
-    var totalCard = Int()
+    private var totalCard = Int()
     //数字の書かれるカードの枚数
-    var cardWithNumber = Int()
+    private var cardWithNumber = Int()
     //カードをタップした順番
-    var tapOrder = Int()
-    var outputText: String?
-    var cardArray: [UILabel] = []
+    private var tapOrder = Int()
+    private var outputText: String?
+    private var cardArray: [UILabel] = []
     
     
     override func viewWillLayoutSubviews() {
@@ -114,7 +114,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         
     }
     
-    func setCard() {
+    private func setCard() {
         
         // カードを作成
         for n in 1 ... totalCard {
@@ -137,7 +137,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     /// カードに数字をランダムに割当て
-    func setNum() {
+    private func setNum() {
         
         // カード配列をシャッフル
         cardArray.shuffle()
@@ -167,7 +167,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     
-    func changeCardTextColor(_ color: UIColor){
+    private func changeCardTextColor(_ color: UIColor){
         
         for card in cardArray{
             card.textColor = color
@@ -175,7 +175,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         
     }
     
-    func ifCardCanBeTapped(_ trueOrNot: Bool){
+    private func ifCardCanBeTapped(_ trueOrNot: Bool){
         for card in self.cardArray{
             card.isUserInteractionEnabled = trueOrNot
         }
@@ -218,7 +218,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     
-    func nextLevel() {
+    private func nextLevel() {
         
         // levelupの音源を再生
         sounds.playSound(fileName: "levelup", extentionName: "mp3")
@@ -249,7 +249,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     ///スコアを加点し、ハイスコア更新かチェック
-    func pointPlus(point:Int){
+    private func pointPlus(point:Int){
         
         score.plus(point: point)
         // スコアを更新
@@ -261,7 +261,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         
     }
     
-    func reset() {
+    private func reset() {
         // 全てのカードの数字をリセット
         for card in cardArray {
             card.text = ""
