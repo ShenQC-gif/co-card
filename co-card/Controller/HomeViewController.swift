@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    var mode = Mode()
+    private var mode = Mode()
     private var modeTitle = ModeTitle()
 
     @IBOutlet var modeLabel: UILabel!

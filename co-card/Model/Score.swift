@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CurrentScore {
+class Score {
     var score: Int
 
     init() {

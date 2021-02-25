@@ -12,8 +12,8 @@ import UIKit
 class MainViewController: UIViewController, AVAudioPlayerDelegate {
     private var sounds = Sounds()
     private var highScore = HighScore()
-    private var score = CurrentScore()
-    private var level = CurrentLevel()
+    private var score = Score()
+    private var level = Level()
     private var modeTitle = ModeTitle()
     private var cardLabel = CardLabel()
     var mode = Mode()

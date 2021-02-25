@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CurrentLevel {
+class Level {
     var level: Int
 
     init() {
