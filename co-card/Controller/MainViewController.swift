@@ -18,6 +18,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     private var modeTitle = ModeTitle()
     private var cardLabel = CardLabel()
     var mode = Mode()
+
+    static let menuHegiht = UIScreen.main.bounds.size.height*0.15
     
     private let modeLabel:UILabel={
         let label = UILabel()
@@ -46,13 +48,7 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         label.font = UIFont(name: "HiraKakuProN-W6", size: 20)
         return label
     }()
-    
-    private let borderLabel:UILabel={
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont(name: "HiraKakuProN-W6", size: 20)
-        return label
-    }()
+
     //カード総数
     private var totalCard = Int()
     //数字の書かれるカードの枚数
@@ -66,35 +62,38 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        var safeAreaTop = CGFloat()
         let width = UIScreen.main.bounds.size.width
-        let height = UIScreen.main.bounds.size.height
-        
-        var safeAreaTop : CGFloat = 0
         
         if #available(iOS 11.0, *) {
             safeAreaTop = self.view.safeAreaInsets.top
         }
         
-        modeLabel.frame = CGRect(x: 0, y: safeAreaTop, width: width/2, height: height*0.075)
+        modeLabel.frame = CGRect(x: 0, y: safeAreaTop, width: width/2, height: MainViewController.menuHegiht/2)
         
-        levelLabel.frame = CGRect(x: width/2, y: safeAreaTop, width: width/2, height: height*0.075)
+        levelLabel.frame = CGRect(x: width/2, y: safeAreaTop, width: width/2, height: MainViewController.menuHegiht/2)
         
-        scoreLabel.frame = CGRect(x: 0, y: safeAreaTop + height*0.075, width: width/2, height: height*0.075)
+        scoreLabel.frame = CGRect(x: 0, y: safeAreaTop + MainViewController.menuHegiht/2, width: width/2, height: MainViewController.menuHegiht/2)
         
-        highScoreLabel.frame = CGRect(x: width/2, y: safeAreaTop + height*0.075, width: width/2, height: height*0.075)
+        highScoreLabel.frame = CGRect(x: width/2, y: safeAreaTop + MainViewController.menuHegiht/2, width: width/2, height: MainViewController.menuHegiht/2)
+
+        view.addSubview(modeLabel)
+        view.addSubview(levelLabel)
+        view.addSubview(scoreLabel)
+        view.addSubview(highScoreLabel)
+
+        let menuBottomBorder = CALayer()
         
-        borderLabel.frame = CGRect(x: 0, y: safeAreaTop + height*0.15, width: width, height: 2)
+        menuBottomBorder.frame = CGRect(x: 0, y: safeAreaTop + MainViewController.menuHegiht, width: width, height: 2)
+
+        menuBottomBorder.backgroundColor = UIColor.black.cgColor
+
+        view.layer.addSublayer(menuBottomBorder)
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.addSubview(modeLabel)
-        view.addSubview(levelLabel)
-        view.addSubview(scoreLabel)
-        view.addSubview(highScoreLabel)
-        view.addSubview(borderLabel)
         
         totalCard = mode.cardPerLine*mode.cardPerLine
         
@@ -102,9 +101,6 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         scoreLabel.text = "Score \(score.currenScore())"
         highScoreLabel.text = "High Score \(highScore.currentHighScore(modeTitle.returnTitle(mode:mode)))"
         modeLabel.text = modeTitle.returnTitle(mode:mode)
-        
-        //topViewにボーダーを追加
-        borderLabel.layer.borderWidth = 2
         
         setCard()
         

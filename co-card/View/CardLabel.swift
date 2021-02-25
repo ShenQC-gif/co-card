@@ -59,15 +59,12 @@ class CardLabel{
     }
     
     private func yCoorinate(_ mode:Mode,_ numberOfCard: Int) -> CGFloat{
+
+        var cardYStartPoint = CGFloat()
         
-        let height = UIScreen.main.bounds.size.height
+        cardYStartPoint = 80 * (1 + CGFloat(numberOfCard / mode.cardPerLine))
         
-        let topViewButtomBorderY = height * 0.15 + 80
-        var variableHeight = CGFloat()
-        
-        variableHeight = 80 * CGFloat(numberOfCard / mode.cardPerLine)
-        
-        let y = topViewButtomBorderY + variableHeight
+        let y = MainViewController.menuHegiht + cardYStartPoint
         
         return y
         
