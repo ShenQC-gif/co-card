@@ -8,67 +8,59 @@
 
 import Foundation
 
-
-enum Mode: Int{
-    
+enum Mode: Int {
     case Easy
-    
+
     case Normal
-    
+
     case Hard
-    
+
     case VeryHard
-    
-    init(){
+
+    init() {
         self = Mode.Normal
     }
-    
-    mutating func nextMode(){
-        
-        if let nextMode = Mode(rawValue: rawValue + 1){
+
+    mutating func nextMode() {
+        if let nextMode = Mode(rawValue: rawValue + 1) {
             self = nextMode
-        }else{
+        } else {
             return
         }
     }
-    
-    func nextModeExists() -> Bool{
-        
+
+    func nextModeExists() -> Bool {
         var ifExist: Bool
-        
-        if Mode(rawValue: rawValue + 1) != nil{
+
+        if Mode(rawValue: rawValue + 1) != nil {
             ifExist = true
-        }else{
+        } else {
             ifExist = false
         }
-        
-        return ifExist
-    }
-    
-    mutating func previousMode(){
-        
-        if let previousMode = Mode(rawValue: rawValue - 1){
-            self = previousMode
-        }else{
-            return
-        }
-    }
-    
-    func previousModeExists() -> Bool{
-        
-        var ifExist: Bool
-        
-        if Mode(rawValue: rawValue - 1) != nil{
-            ifExist = true
-        }else{
-            ifExist = false
-        }
-        
+
         return ifExist
     }
 
-    
-    
+    mutating func previousMode() {
+        if let previousMode = Mode(rawValue: rawValue - 1) {
+            self = previousMode
+        } else {
+            return
+        }
+    }
+
+    func previousModeExists() -> Bool {
+        var ifExist: Bool
+
+        if Mode(rawValue: rawValue - 1) != nil {
+            ifExist = true
+        } else {
+            ifExist = false
+        }
+
+        return ifExist
+    }
+
     var cardPerLine: Int {
         switch self {
         case .Easy: return 4
@@ -76,7 +68,4 @@ enum Mode: Int{
         case .Hard, .VeryHard: return 6
         }
     }
-    
-    
-    
 }

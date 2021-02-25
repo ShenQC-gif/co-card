@@ -9,7 +9,6 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
     var mode = Mode()
     private var modeTitle = ModeTitle()
 
@@ -17,34 +16,28 @@ class HomeViewController: UIViewController {
     @IBOutlet var nextModeButton: UIButton!
     @IBOutlet var previousModeButton: UIButton!
     @IBOutlet var start: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         start.layer.borderWidth = 2
         start.layer.cornerRadius = 10
 
-        modeLabel.text = modeTitle.returnTitle(mode:mode)
-        
+        modeLabel.text = modeTitle.returnTitle(mode: mode)
     }
 
     @IBAction func onNextModeButtonTapped(_: Any) {
-        
         mode.nextMode()
-        modeLabel.text = modeTitle.returnTitle(mode:mode)
+        modeLabel.text = modeTitle.returnTitle(mode: mode)
         nextModeButton.isHidden = !mode.nextModeExists()
         previousModeButton.isHidden = !mode.previousModeExists()
-        
     }
 
     @IBAction func onPreviousModeButtonTapped(_: Any) {
-        
         mode.previousMode()
-        modeLabel.text = modeTitle.returnTitle(mode:mode)
+        modeLabel.text = modeTitle.returnTitle(mode: mode)
         nextModeButton.isHidden = !mode.nextModeExists()
         previousModeButton.isHidden = !mode.previousModeExists()
-        
-        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {

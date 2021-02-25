@@ -9,7 +9,7 @@
 import AVFoundation
 import Foundation
 
-class Sounds{
+class Sounds {
     var player: AVAudioPlayer?
 
     func playSound(fileName: String, extentionName: String) {

@@ -9,7 +9,6 @@
 import UIKit
 
 class GameoverViewController: UIViewController {
-    
     private var screenShot = ScreenShot()
     var level = CurrentLevel()
     var score = CurrentScore()
@@ -35,20 +34,18 @@ class GameoverViewController: UIViewController {
         outputLabel.text = outputText
         levelLabel.text = "Level \(level.currentLevel())"
         scoreLabel.text = "Score \(score.currenScore())"
-        modeLabel.text = modeTitle.returnTitle(mode:mode)
+        modeLabel.text = modeTitle.returnTitle(mode: mode)
     }
 
     @IBAction func onShareButtonTapped(_: Any) {
-        
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
-        
+
         let size = CGSize(width: width, height: height * 12 / 24)
-        
+
         let activityVC = screenShot.share(size: size, width: width, height: height, view: view)
-        
+
         present(activityVC, animated: true, completion: nil)
-        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {

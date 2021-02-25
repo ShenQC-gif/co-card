@@ -8,21 +8,20 @@
 
 import Foundation
 
-class CurrentLevel{
-    
-    var level:Int
-    
-    init(){
-        self.level = 1
+class CurrentLevel {
+    var level: Int
+
+    init() {
+        level = 1
     }
-    ///レベルを1上げる
-    func nextLevel(){
+
+    /// レベルを1上げる
+    func nextLevel() {
         level += 1
     }
-    
-    ///現在のレベルを返す
-    func currentLevel() -> Int{
+
+    /// 現在のレベルを返す
+    func currentLevel() -> Int {
         return level
     }
-    
 }

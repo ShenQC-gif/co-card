@@ -8,25 +8,20 @@
 
 import Foundation
 
-class ModeTitle{
-    
-    func returnTitle(mode: Mode) -> String{
-        
+class ModeTitle {
+    func returnTitle(mode: Mode) -> String {
         switch mode {
-        
         case .Easy:
             return "Easy"
-            
+
         case .Normal:
             return "Normal"
-            
+
         case .Hard:
             return "Hard"
-            
+
         case .VeryHard:
             return "VeryHard"
         }
-        
     }
-    
 }

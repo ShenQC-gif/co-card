@@ -9,24 +9,17 @@
 import Foundation
 
 class CurrentScore {
-    
-    var score:Int
-    
+    var score: Int
+
     init() {
-        self.score = 0
+        score = 0
     }
-    
-    func plus(point: Int){
-        
+
+    func plus(point: Int) {
         score += point
-       
     }
-    
-    func currenScore() -> Int{
-        
+
+    func currenScore() -> Int {
         return score
-        
     }
-    
-    
 }
