@@ -18,12 +18,16 @@
 		EAD082E625554D0D008621B8 /* co_cardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD082E525554D0D008621B8 /* co_cardTests.swift */; };
 		EAD082F125554D0D008621B8 /* co_cardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD082F025554D0D008621B8 /* co_cardUITests.swift */; };
 		EAD0830225554DEC008621B8 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0830125554DEC008621B8 /* Sounds.swift */; };
-		EAD0830625554E30008621B8 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0830525554E30008621B8 /* Highscore.swift */; };
+		EAD0830625554E30008621B8 /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0830525554E30008621B8 /* HighScore.swift */; };
 		EAD0830825554E56008621B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0830725554E56008621B8 /* HomeViewController.swift */; };
 		EAD0830A25554E8A008621B8 /* GameoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0830925554E8A008621B8 /* GameoverViewController.swift */; };
 		EAD0830E255557D7008621B8 /* wrong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EAD0830B255557D7008621B8 /* wrong.mp3 */; };
 		EAD0830F255557D7008621B8 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EAD0830C255557D7008621B8 /* correct.mp3 */; };
 		EAD08310255557D7008621B8 /* levelup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EAD0830D255557D7008621B8 /* levelup.mp3 */; };
+		EAF36A9A25A94CC6008C522D /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36A9925A94CC6008C522D /* Level.swift */; };
+		EAF36A9F25A95351008C522D /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36A9E25A95351008C522D /* Score.swift */; };
+		EAF36AB525AC2438008C522D /* CardLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36AB425AC2438008C522D /* CardLabel.swift */; };
+		EAF36B6A25B467AE008C522D /* ModeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36B6925B467AE008C522D /* ModeTitle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,12 +65,16 @@
 		EAD082F025554D0D008621B8 /* co_cardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = co_cardUITests.swift; sourceTree = "<group>"; };
 		EAD082F225554D0D008621B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAD0830125554DEC008621B8 /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
-		EAD0830525554E30008621B8 /* Highscore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highscore.swift; sourceTree = "<group>"; };
+		EAD0830525554E30008621B8 /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
 		EAD0830725554E56008621B8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EAD0830925554E8A008621B8 /* GameoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameoverViewController.swift; sourceTree = "<group>"; };
 		EAD0830B255557D7008621B8 /* wrong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wrong.mp3; sourceTree = "<group>"; };
 		EAD0830C255557D7008621B8 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		EAD0830D255557D7008621B8 /* levelup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = levelup.mp3; sourceTree = "<group>"; };
+		EAF36A9925A94CC6008C522D /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		EAF36A9E25A95351008C522D /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		EAF36AB425AC2438008C522D /* CardLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLabel.swift; sourceTree = "<group>"; };
+		EAF36B6925B467AE008C522D /* ModeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeTitle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,8 +156,8 @@
 			children = (
 				EAD082CE25554D09008621B8 /* AppDelegate.swift */,
 				EAD082D025554D09008621B8 /* SceneDelegate.swift */,
-				EAD082D225554D09008621B8 /* MainViewController.swift */,
 				EAD0830725554E56008621B8 /* HomeViewController.swift */,
+				EAD082D225554D09008621B8 /* MainViewController.swift */,
 				EAD0830925554E8A008621B8 /* GameoverViewController.swift */,
 			);
 			path = Controller;
@@ -160,6 +168,8 @@
 			children = (
 				EAD082D425554D09008621B8 /* Main.storyboard */,
 				EAD082D925554D0C008621B8 /* LaunchScreen.storyboard */,
+				EAF36B6925B467AE008C522D /* ModeTitle.swift */,
+				EAF36AB425AC2438008C522D /* CardLabel.swift */,
 				EAD0830125554DEC008621B8 /* Sounds.swift */,
 				EA5CD4222559F994001556D8 /* ScreenShot.swift */,
 				EAD0830C255557D7008621B8 /* correct.mp3 */,
@@ -173,8 +183,10 @@
 		EAD0830025554D72008621B8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EAD0830525554E30008621B8 /* Highscore.swift */,
+				EAD0830525554E30008621B8 /* HighScore.swift */,
 				EAA011A22573A175008F0531 /* Mode.swift */,
+				EAF36A9925A94CC6008C522D /* Level.swift */,
+				EAF36A9E25A95351008C522D /* Score.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -189,6 +201,7 @@
 				EAD082C725554D09008621B8 /* Sources */,
 				EAD082C825554D09008621B8 /* Frameworks */,
 				EAD082C925554D09008621B8 /* Resources */,
+				EA12DF4926659D4300D74091 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -242,7 +255,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "ちいつんしん";
 				TargetAttributes = {
 					EAD082CA25554D09008621B8 = {
@@ -308,6 +321,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		EA12DF4926659D4300D74091 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EAD082C725554D09008621B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -316,11 +349,15 @@
 				EAD082D325554D09008621B8 /* MainViewController.swift in Sources */,
 				EA5CD4232559F994001556D8 /* ScreenShot.swift in Sources */,
 				EAD082CF25554D09008621B8 /* AppDelegate.swift in Sources */,
-				EAD0830625554E30008621B8 /* Highscore.swift in Sources */,
+				EAF36B6A25B467AE008C522D /* ModeTitle.swift in Sources */,
+				EAD0830625554E30008621B8 /* HighScore.swift in Sources */,
 				EAD082D125554D09008621B8 /* SceneDelegate.swift in Sources */,
 				EAD0830A25554E8A008621B8 /* GameoverViewController.swift in Sources */,
 				EAD0830225554DEC008621B8 /* Sounds.swift in Sources */,
+				EAF36AB525AC2438008C522D /* CardLabel.swift in Sources */,
 				EAA011A32573A175008F0531 /* Mode.swift in Sources */,
+				EAF36A9A25A94CC6008C522D /* Level.swift in Sources */,
+				EAF36A9F25A95351008C522D /* Score.swift in Sources */,
 				EAD0830825554E56008621B8 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

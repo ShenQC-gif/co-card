@@ -10,219 +10,187 @@ import AVFoundation
 import UIKit
 
 class MainViewController: UIViewController, AVAudioPlayerDelegate {
-    
-    var sounds = Sounds()
-    var highScore = Highscore()
+    private var sounds = Sounds()
+    private var highScore = HighScore()
+    private var score = Score()
+    private var level = Level()
+    private var modeTitle = ModeTitle()
+    private var cardLabel = CardLabel()
+    var mode = Mode()
 
-    //一行あたりのカードの枚数。難易度によって異なる。
-    var cardPerLine = Int()
-    //座標計算のため、CGFloat型でも管理
-    var cardPerLineInCGFloatType = CGFloat()
-    
-    var cardCount = Int()
-    var cardCountInCGFloatType = CGFloat()
-    
-    var coverCount = CGFloat()
-    var coverPlotInCGFloatType = CGFloat()
+    static let menuHegiht = UIScreen.main.bounds.size.height * 0.15
 
-    //カードの一辺の長さ。カードの枚数によって異なる。
-    var standardLength: CGFloat = 0
+    private let modeLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 20)
+        return label
+    }()
 
-    //カードをタップした順番
-    var chooseOrder = 0
+    private let levelLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 20)
+        return label
+    }()
 
-    var level = 1
-    var score = 0
-    var mode : Mode = .Normal
+    private let scoreLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 20)
+        return label
+    }()
 
-    var outputText: String?
+    private let highScoreLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 20)
+        return label
+    }()
 
-    let width = UIScreen.main.bounds.size.width
-    let height = UIScreen.main.bounds.size.height
+    // カード総数
+    private var totalCard = Int()
+    // 数字の書かれるカードの枚数
+    private var cardWithNumber = Int()
+    // カードをタップした順番
+    private var tapOrder = Int()
+    private var outputText: String?
+    private var cardArray: [UILabel] = []
 
-    var cardArray: [UILabel] = []
-    var coverArray: [UILabel] = []
-    var numArray: [Int] = []
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
 
-    @IBOutlet var levelLabel: UILabel!
-    @IBOutlet var scoreLabel: UILabel!
-    @IBOutlet var modeLabel: UILabel!
-    @IBOutlet var highscoreLabel: UILabel!
+        var safeAreaTop = CGFloat()
+        let width = UIScreen.main.bounds.size.width
+
+        if #available(iOS 11.0, *) {
+            safeAreaTop = self.view.safeAreaInsets.top
+        }
+
+        modeLabel.frame = CGRect(x: 0,
+                                 y: safeAreaTop,
+                                 width: width / 2,
+                                 height: MainViewController.menuHegiht / 2)
+
+        levelLabel.frame = CGRect(x: width / 2,
+                                  y: safeAreaTop,
+                                  width: width / 2,
+                                  height: MainViewController.menuHegiht / 2)
+
+        scoreLabel.frame = CGRect(x: 0,
+                                  y: safeAreaTop + MainViewController.menuHegiht / 2,
+                                  width: width / 2,
+                                  height: MainViewController.menuHegiht / 2)
+
+        highScoreLabel.frame = CGRect(x: width / 2,
+                                      y: safeAreaTop + MainViewController.menuHegiht / 2,
+                                      width: width / 2,
+                                      height: MainViewController.menuHegiht / 2)
+
+        view.addSubview(modeLabel)
+        view.addSubview(levelLabel)
+        view.addSubview(scoreLabel)
+        view.addSubview(highScoreLabel)
+
+        let menuBottomBorder = CALayer()
+
+        menuBottomBorder.frame = CGRect(x: 0, y: safeAreaTop + MainViewController.menuHegiht, width: width, height: 2)
+
+        menuBottomBorder.backgroundColor = UIColor.black.cgColor
+
+        view.layer.addSublayer(menuBottomBorder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        cardPerLineInCGFloatType = CGFloat(cardPerLine)
 
-        // カードと画面両辺との間を1とすると、カードとカードの間が2、カードの一辺の長さを4となる
-        standardLength = width / (cardPerLineInCGFloatType * 6)
+        totalCard = mode.cardPerLine * mode.cardPerLine
 
-        levelLabel.textAlignment = NSTextAlignment.center
-        scoreLabel.textAlignment = NSTextAlignment.center
-
-        levelLabel.text = " Level \(level)"
-        scoreLabel.text = " Score \(score)"
-               
-//        highScore.refer("\(mode ?? "")")
-        highscoreLabel.text = "High Score \(highScore.refer(mode.rawValue))"
-        modeLabel.text = mode.rawValue
-
-        modeLabel.frame = CGRect(x: 0, y: height / 18, width: width / 2, height: standardLength * 2)
-
-        levelLabel.frame = CGRect(x: width / 2, y: height / 18, width: width / 2, height: standardLength * 2)
-
-        scoreLabel.frame = CGRect(x: 0, y: height * 2 / 18, width: width / 2, height: standardLength * 2)
-
-        highscoreLabel.frame = CGRect(x: width / 2, y: height * 2 / 18, width: width / 2, height: standardLength * 2)
-
-        // トップの下線のCALayerを作成
-        let topBorder = CALayer()
-        topBorder.frame = CGRect(x: 0, y: height * 3 / 18, width: width, height: 2.0)
-        topBorder.backgroundColor = UIColor.black.cgColor
-
-        view.layer.addSublayer(topBorder)
+        levelLabel.text = "Level \(level.currentLevel())"
+        scoreLabel.text = "Score \(score.currenScore())"
+        highScoreLabel.text = "High Score \(highScore.currentHighScore(modeTitle.returnTitle(mode: mode)))"
+        modeLabel.text = modeTitle.returnTitle(mode: mode)
 
         setCard()
 
         // 最初に数字が書かれたカードは3枚
-        cardCount = 3
+        cardWithNumber = 3
         setNum()
-
     }
 
-
-    func setCard() {
-        // oneColumnNumの二乗枚カードを作成
-        for n in 1 ... cardPerLine*cardPerLine {
-            // Labelのインスタンスを作成
-            let card = UILabel()
-
-            // Labelにカードプロパティを付与
-            boxProperty(label: card)
-
-            // 数字の書かれたカードの総数を1増やす
-            cardCount += 1
-            cardCountInCGFloatType = CGFloat(cardCount)
-
-            // カードがoneColumnNum(=plotForCard)の数で一行になるよう座標を定義
-            let cardx = standardLength * (1 + 6 * (cardCountInCGFloatType - 1).truncatingRemainder(dividingBy: cardPerLineInCGFloatType))
-            let cardy = height / 9 + 80 * ceil(cardCountInCGFloatType / cardPerLineInCGFloatType)
-
-            // カードの座標と大きさを定義
-            card.frame = CGRect(x: cardx,
-                                y: cardy,
-                                width: standardLength * 4,
-                                height: standardLength * 4)
+    private func setCard() {
+        // カードを作成
+        for number in 1 ... totalCard {
+            let card = cardLabel.createCard(mode: mode, numberOfCard: number)
 
             // 画面にカードを追加
             view.addSubview(card)
-
-            // カードにタグを設定
-            card.tag = n
-
             // カード配列にカードを追加
             cardArray.append(card)
+        }
+
+        for card in cardArray {
+            // UIGestureのインスタンス作成、hideアクション呼び出し
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onCardTapped(_:)))
+
+            // カードにタップジェスチャーを追加
+            card.addGestureRecognizer(tapGesture)
         }
     }
 
     /// カードに数字をランダムに割当て
-    func setNum() {
-        // 数字の書かれたカードの枚数
-        for n in 1 ... cardCount {
-            // 1〜カードの枚数分の数字配列を作成
-            numArray.append(n)
-        }
-
+    private func setNum() {
         // カード配列をシャッフル
         cardArray.shuffle()
 
-        // シャッフルしたカード配列に数字を割当て
-        for n in 0 ..< cardCount {
-            cardArray[n].text = "\(numArray[n])"
+        // cardWithNumberの数だけカードに数字とタグを付与
+        for number in 1 ... cardWithNumber {
+            cardArray[number].text = "\(number)"
+            cardArray[number].tag = number
         }
 
-        if mode.rawValue == "Very Hard" {
-            // 難易度がVery Hardなら数字割当てから2秒後にカバーを作成
+        changeCardTextColor(.black)
+        ifCardCanBeTapped(false)
+
+        if mode == .veryHard {
+            // 難易度がVery Hardなら数字割当てから2秒後にカードの文字が消える
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.setCover()
+                self.changeCardTextColor(.white)
+                self.ifCardCanBeTapped(true)
             }
         } else {
-            // 難易度がVery Hard以外なら数字割当てから3秒後にカバーを作成
+            // 難易度がVery Hard以外なら数字割当てから3秒後にカードの文字が消える
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                self.setCover()
+                self.changeCardTextColor(.white)
+                self.ifCardCanBeTapped(true)
             }
         }
     }
 
-    /// カバーの作成
-    func setCover() {
-        // oneColumnNumの二乗枚カバーを作成
-        for n in 1 ... cardPerLine*cardPerLine {
-            // UILabelのインスタンス作成
-            let cover = UILabel()
-
-            boxProperty(label: cover)
-
-            // カバーの枚数を増加
-            coverCount += 1
-            coverPlotInCGFloatType = CGFloat(coverCount)
-
-            // カバーがoneColumnNumの数で一行になるよう座標を定義
-            let coverx = standardLength * (1 + 6 * (coverPlotInCGFloatType - 1).truncatingRemainder(dividingBy: cardPerLineInCGFloatType))
-            let covery = height / 9 + 80 * ceil(coverPlotInCGFloatType / cardPerLineInCGFloatType)
-
-            // カバーの座標とサイズを設定
-            cover.frame = CGRect(x: coverx,
-                                 y: covery,
-                                 width: standardLength * 4,
-                                 height: standardLength * 4)
-
-            // viewにカバーを追加
-            view.addSubview(cover)
-
-            // カバーを管理するために配列に組み込む
-            coverArray.append(cover)
-
-            // UIGestureのインスタンス作成、hideアクション呼び出し
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hide(_:)))
-
-            // カバーをタップできるようにする
-            cover.isUserInteractionEnabled = true
-
-            // カバーにタップジェスチャーを追加
-            cover.addGestureRecognizer(tapGesture)
-        }
-
-        // カバーにタグを付与
-        for n in 0 ..< numArray.count {
-            // シャッフル後のカード配列の各カードのタグをカバー配列のカバーに割当て
-            coverArray[cardArray[n].tag - 1].tag = numArray[n]
+    private func changeCardTextColor(_ color: UIColor) {
+        for card in cardArray {
+            card.textColor = color
         }
     }
-    
-   
-        //カード・カバーのプロパティを設定
-        func boxProperty(label: UILabel) {
-           
-            label.textAlignment = NSTextAlignment.center // 横揃えの設定
-            label.textColor = UIColor.black // テキストカラーの設定
-            label.backgroundColor = UIColor.white
-            label.layer.borderWidth = 2
-            label.layer.cornerRadius = 10
-            label.font = UIFont(name: "HiraKakuProN-W6", size: 17) // フォントの設定
-        
+
+    private func ifCardCanBeTapped(_ trueOrNot: Bool) {
+        for card in cardArray {
+            card.isUserInteractionEnabled = trueOrNot
+        }
     }
 
-    /// カバーをタップした時の挙動
-    @objc func hide(_ sender: UITapGestureRecognizer) {
+    /// カードをタップした時の挙動
+    @objc func onCardTapped(_ sender: UITapGestureRecognizer) {
         // タップした順番を管理
-        chooseOrder += 1
+        tapOrder += 1
 
-        // タップした順番とカバーのタグが一致しなければGameover
-        if (sender.view?.tag)! != chooseOrder {
-            // カバーを除去
-            sender.view?.removeFromSuperview()
+        // タップされたら数字を表示し、再度タップできないようにする
+        let card = sender.view as UIView? as? UILabel
+        card?.textColor = .black
+        card?.isUserInteractionEnabled = false
 
+        // タップした順番とカードの数字(=タグ)が一致しなければGameover
+        if (sender.view?.tag)! != tapOrder {
             // 間違いの効果音
             sounds.playSound(fileName: "wrong", extentionName: "mp3")
 
@@ -231,112 +199,81 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
                 self.performSegue(withIdentifier: "gameover", sender: nil)
             }
 
-        } else { // タップしたカバーが正しい場合
+        } else { // タップしたカードが正しい場合
             // 正解の音源を再生
             sounds.playSound(fileName: "correct", extentionName: "mp3")
 
             // Gameoverにならなければスコアを10点プラス
-            score += 10
+            pointPlus(point: 10)
 
-            // スコアを更新
-            scoreLabel.text = " Score \(score)"
-
-            // ハイスコア更新かチェック
-            highScore.updateScore(score, mode.rawValue)
-            if highScore.updateOrNot {
-                highscoreLabel.text = "High Score: \(highScore.score)"
-            }
-
-            // カバーを除去
-            sender.view?.removeFromSuperview()
-
-            // 全てのカバーをタップ(カバーをタップした回数がレベル数より2枚多い回数まで達する)すれば次のレベルへ
-            if chooseOrder == level + 2 {
-                
+            // 全てのカードをタップ(カードをタップした回数がレベル数より2枚多い回数まで達する)すれば次のレベルへ
+            if tapOrder == level.level + 2 {
                 nextLevel()
-                
             }
         }
     }
-    
-    func nextLevel() {
-        
+
+    private func nextLevel() {
         // levelupの音源を再生
         sounds.playSound(fileName: "levelup", extentionName: "mp3")
 
-        // 一度カード、カバー、枚数をリセット
+        // 一度カードの表示、枚数をリセット
         reset()
 
-        // レベル数を1上げる
-        level += 1
-
-        // レベル数を更新
-        levelLabel.text = " Level \(level)"
+        level.nextLevel()
+        levelLabel.text = "Level \(level.currentLevel())"
 
         // スコアを100点プラス
-        score += 100
+        pointPlus(point: 100)
 
-        // スコアを更新
-        scoreLabel.text = " Score \(score)"
-
-        // ハイスコア更新かチェック
-        highScore.updateScore(score, mode.rawValue)
-        if highScore.updateOrNot {
-            highscoreLabel.text = "High Score: \(highScore.score)"
-        }
-        
-        //レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動
-        if level == cardPerLine * cardPerLine - 1 {
+        // レベルがMaxに達した(=(カードの全枚数-1)回レベルアップを繰り返す)時の挙動
+        if level.level == totalCard - 1 {
             outputText = "Congratulations!!"
             performSegue(withIdentifier: "gameover", sender: nil)
 
-        //レベルがMaxに達していない時の挙動
+            // レベルがMaxに達していない時の挙動
         } else {
             // 数字を割当てるカードの枚数を増やす
-            cardCount += 1
+            cardWithNumber += 1
 
             // 数字を割当て
             setNum()
         }
-        
     }
 
-    func reset() {
+    /// スコアを加点し、ハイスコア更新かチェック
+    private func pointPlus(point: Int) {
+        score.plus(point: point)
+        // スコアを更新
+        scoreLabel.text = "Score \(score.currenScore())"
+
+        // ハイスコア更新かチェック
+        highScore.updateScore(score.score, modeTitle.returnTitle(mode: mode))
+        highScoreLabel.text = "High Score \(highScore.currentHighScore(modeTitle.returnTitle(mode: mode)))"
+    }
+
+    private func reset() {
         // 全てのカードの数字をリセット
-        for n in 0 ..< numArray.count {
-            cardArray[n].text = ""
+        for card in cardArray {
+            card.text = ""
         }
-        // 全てのカバーを隠す
-        for n in 0 ..< coverArray.count {
-            coverArray[n].isHidden = true
-        }
-
-        // カバー枚数、選んだ順番をリセット
-        coverCount = 0
-        chooseOrder = 0
-
-        // カバー配列、数字配列をリセット
-        coverArray = []
-        numArray = []
+        // 選んだ順番をリセット
+        tapOrder = 0
     }
-    
+
     // gameover画面に遷移する際のデータの受け渡し
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "gameover" {
-            let gameover = segue.destination as! GameoverViewController
-            gameover.level = level
-            gameover.score = score
-            gameover.cardPerLine = cardPerLine
-            gameover.mode = mode
-            
-            if highScore.updateOrNot == true {
-                gameover.outputText = "New Score!!"
-            }else {
-                gameover.outputText = "Gameover"
+            let gameover = segue.destination as? GameoverViewController
+            gameover?.level.level = level.level
+            gameover?.score.score = score.score
+            gameover?.mode = mode
+
+            if highScore.updatedOrNot == true {
+                gameover?.outputText = "New Score!!"
+            } else {
+                gameover?.outputText = "Gameover"
             }
-                
         }
     }
 }
-
-
