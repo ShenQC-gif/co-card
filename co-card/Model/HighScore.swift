@@ -15,7 +15,7 @@ class HighScore {
     /// 最新のハイスコア参照
     func refer(_ mode: String) {
         if UserDefaults.standard.object(forKey: mode) != nil {
-            highScore = UserDefaults.standard.object(forKey: mode) as! Int
+            highScore = UserDefaults.standard.object(forKey: mode) as? Int ?? 0
 
         } else {
             highScore = 0

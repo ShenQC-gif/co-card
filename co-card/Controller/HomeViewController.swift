@@ -42,8 +42,8 @@ class HomeViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "toMain" {
-            let playscreen = segue.destination as! MainViewController
-            playscreen.mode = mode
+            let mainViewController = segue.destination as? MainViewController
+            mainViewController?.mode = mode
         }
     }
 }

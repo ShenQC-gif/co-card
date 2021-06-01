@@ -9,16 +9,16 @@
 import Foundation
 
 enum Mode: Int {
-    case Easy
+    case easy
 
-    case Normal
+    case normal
 
-    case Hard
+    case hard
 
-    case VeryHard
+    case veryHard
 
     init() {
-        self = Mode.Normal
+        self = Mode.normal
     }
 
     mutating func nextMode() {
@@ -63,9 +63,9 @@ enum Mode: Int {
 
     var cardPerLine: Int {
         switch self {
-        case .Easy: return 4
-        case .Normal: return 5
-        case .Hard, .VeryHard: return 6
+        case .easy: return 4
+        case .normal: return 5
+        case .hard, .veryHard: return 6
         }
     }
 }

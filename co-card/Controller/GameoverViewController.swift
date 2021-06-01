@@ -50,8 +50,8 @@ class GameoverViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "toMain" {
-            let playscreen = segue.destination as! MainViewController
-            playscreen.mode = mode
+            let playscreen = segue.destination as? MainViewController
+            playscreen?.mode = mode
         }
     }
 }

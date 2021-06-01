@@ -67,13 +67,25 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
             safeAreaTop = self.view.safeAreaInsets.top
         }
 
-        modeLabel.frame = CGRect(x: 0, y: safeAreaTop, width: width / 2, height: MainViewController.menuHegiht / 2)
+        modeLabel.frame = CGRect(x: 0,
+                                 y: safeAreaTop,
+                                 width: width / 2,
+                                 height: MainViewController.menuHegiht / 2)
 
-        levelLabel.frame = CGRect(x: width / 2, y: safeAreaTop, width: width / 2, height: MainViewController.menuHegiht / 2)
+        levelLabel.frame = CGRect(x: width / 2,
+                                  y: safeAreaTop,
+                                  width: width / 2,
+                                  height: MainViewController.menuHegiht / 2)
 
-        scoreLabel.frame = CGRect(x: 0, y: safeAreaTop + MainViewController.menuHegiht / 2, width: width / 2, height: MainViewController.menuHegiht / 2)
+        scoreLabel.frame = CGRect(x: 0,
+                                  y: safeAreaTop + MainViewController.menuHegiht / 2,
+                                  width: width / 2,
+                                  height: MainViewController.menuHegiht / 2)
 
-        highScoreLabel.frame = CGRect(x: width / 2, y: safeAreaTop + MainViewController.menuHegiht / 2, width: width / 2, height: MainViewController.menuHegiht / 2)
+        highScoreLabel.frame = CGRect(x: width / 2,
+                                      y: safeAreaTop + MainViewController.menuHegiht / 2,
+                                      width: width / 2,
+                                      height: MainViewController.menuHegiht / 2)
 
         view.addSubview(modeLabel)
         view.addSubview(levelLabel)
@@ -108,8 +120,8 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
 
     private func setCard() {
         // カードを作成
-        for n in 1 ... totalCard {
-            let card = cardLabel.createCard(mode: mode, numberOfCard: n)
+        for number in 1 ... totalCard {
+            let card = cardLabel.createCard(mode: mode, numberOfCard: number)
 
             // 画面にカードを追加
             view.addSubview(card)
@@ -132,15 +144,15 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
         cardArray.shuffle()
 
         // cardWithNumberの数だけカードに数字とタグを付与
-        for n in 1 ... cardWithNumber {
-            cardArray[n].text = "\(n)"
-            cardArray[n].tag = n
+        for number in 1 ... cardWithNumber {
+            cardArray[number].text = "\(number)"
+            cardArray[number].tag = number
         }
 
         changeCardTextColor(.black)
         ifCardCanBeTapped(false)
 
-        if mode == .VeryHard {
+        if mode == .veryHard {
             // 難易度がVery Hardなら数字割当てから2秒後にカードの文字が消える
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.changeCardTextColor(.white)
@@ -252,15 +264,15 @@ class MainViewController: UIViewController, AVAudioPlayerDelegate {
     // gameover画面に遷移する際のデータの受け渡し
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "gameover" {
-            let gameover = segue.destination as! GameoverViewController
-            gameover.level.level = level.level
-            gameover.score.score = score.score
-            gameover.mode = mode
+            let gameover = segue.destination as? GameoverViewController
+            gameover?.level.level = level.level
+            gameover?.score.score = score.score
+            gameover?.mode = mode
 
             if highScore.updatedOrNot == true {
-                gameover.outputText = "New Score!!"
+                gameover?.outputText = "New Score!!"
             } else {
-                gameover.outputText = "Gameover"
+                gameover?.outputText = "Gameover"
             }
         }
     }

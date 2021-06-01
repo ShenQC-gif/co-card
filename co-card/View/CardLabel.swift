@@ -17,8 +17,8 @@ class CardLabel {
 
         card.frame = CGRect(x: xCoorinate(mode, numberOfCard),
                             y: yCoorinate(mode, numberOfCard - 1),
-                            width: LengthOfSide(mode),
-                            height: LengthOfSide(mode))
+                            width: lengthOfSide(mode),
+                            height: lengthOfSide(mode))
 
         return card
     }
@@ -45,11 +45,11 @@ class CardLabel {
     private func xCoorinate(_ mode: Mode, _ numberOfCard: Int) -> CGFloat {
         let standardLength = standareLength(mode)
 
-        var x = CGFloat()
+        var xCoordinate = CGFloat()
 
-        x = standardLength + 6 * standardLength * CGFloat(numberOfCard % mode.cardPerLine)
+        xCoordinate = standardLength + 6 * standardLength * CGFloat(numberOfCard % mode.cardPerLine)
 
-        return x
+        return xCoordinate
     }
 
     private func yCoorinate(_ mode: Mode, _ numberOfCard: Int) -> CGFloat {
@@ -57,12 +57,12 @@ class CardLabel {
 
         cardYStartPoint = 80 * (1 + CGFloat(numberOfCard / mode.cardPerLine))
 
-        let y = MainViewController.menuHegiht + cardYStartPoint
+        let yCoordinate = MainViewController.menuHegiht + cardYStartPoint
 
-        return y
+        return yCoordinate
     }
 
-    private func LengthOfSide(_ mode: Mode) -> CGFloat {
+    private func lengthOfSide(_ mode: Mode) -> CGFloat {
         let standardLength = standareLength(mode)
         return standardLength * 4
     }

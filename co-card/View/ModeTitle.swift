@@ -11,16 +11,16 @@ import Foundation
 class ModeTitle {
     func returnTitle(mode: Mode) -> String {
         switch mode {
-        case .Easy:
+        case .easy:
             return "Easy"
 
-        case .Normal:
+        case .normal:
             return "Normal"
 
-        case .Hard:
+        case .hard:
             return "Hard"
 
-        case .VeryHard:
+        case .veryHard:
             return "VeryHard"
         }
     }
